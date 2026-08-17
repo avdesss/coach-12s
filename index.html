@@ -68,6 +68,7 @@ input.f::placeholder{color:#4d5665;font-weight:400}
 
 .prev{font-size:11px;color:var(--dim);margin-top:7px;padding-top:7px;border-top:1px dashed var(--line)}
 .prev b{color:var(--green);font-weight:650}
+.prev .cap{color:var(--rust);font-weight:600}
 .prev .up{color:var(--gold)}
 
 .lab{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;
@@ -158,27 +159,27 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:15px 0}
 /* ============ PROGRAMME ============ */
 const PROG = {
  1:{nom:"Poussée lourde", court:"Poussée", ex:[
-   {b:"A1",n:"Développé couché barre",s:4,r:"5-7",c:"RIR 2 · repos 3 min",u:"kg"},
-   {b:"A2",n:"Développé militaire debout",s:4,r:"6-8",c:"RIR 2 · repos 2-3 min",u:"kg"},
-   {b:"B1",n:"Développé incliné haltères",s:3,r:"8-10",c:"RIR 1-2",u:"kg/halt"},
+   {b:"A1",n:"Développé couché barre",s:4,r:"5-7",c:"RIR 2 · repos 3 min · <b style='color:var(--blue)'>monte à 95-97,5 kg</b> (S1 : 10 reps à 90 = trop léger)",u:"kg"},
+   {b:"A2",n:"Développé incliné haltères",s:3,r:"8-10",c:"RIR 1-2 · <b style='color:var(--blue)'>déplacé avant le militaire</b> (S1 : plus de force en fin de séance)",u:"kg/halt"},
+   {b:"B1",n:"Développé militaire debout",s:4,r:"6-8",c:"RIR 2 · repos 2-3 min · coûteux nerveusement, d'où sa 3ᵉ position",u:"kg"},
    {b:"B2",n:"Élévations latérales",s:4,r:"12-15",c:"RIR 0-1",u:"kg/halt"},
    {b:"C1",n:"Dips",s:3,r:"10-12",c:"RIR 1",u:"kg lest",alt:["Écarté à la poulie"]},
-   {b:"C2",n:"Extension triceps overhead",s:3,r:"10-12",c:"RIR 1",u:"kg"},
+   {b:"C2",n:"Extension triceps overhead",s:3,r:"10-12",c:"RIR 1 · <b style='color:var(--blue)'>≈42 kg</b> pour tenir 10-12",u:"kg"},
    {b:"D",n:"Crunch poulie",s:3,r:"12",c:"+ gainage latéral 2×30 s",u:"kg"}],
    cardio:{t:"Z2 tapis",min:25,bpm:"138-145"}},
  2:{nom:"Jambes barre", court:"Jambes A", ex:[
-   {b:"A",n:"Squat barre",s:4,r:"5-8",c:"RIR 2 · repos 3 min",u:"kg"},
-   {b:"B",n:"Extension lombaire 45°",s:3,r:"12-15",c:"RIR 2 · charge contre la poitrine",u:"kg"},
-   {b:"C",n:"Fentes marchées haltères",s:3,r:"10-12/jbe",c:"RIR 1",u:"kg/halt"},
-   {b:"D",n:"Leg curl allongé",s:4,r:"10-12",c:"RIR 1 · hanche neutre",u:"kg"},
+   {b:"A",n:"Squat barre",s:4,r:"5-8",c:"RIR 2 · repos 3 min · <b style='color:var(--rust)'>plafond 130 kg jusqu'en S4</b> · pas de série lourde isolée",u:"kg",cap:130,capW:4,alt:["Presse à cuisses"]},
+   {b:"B",n:"Extension lombaire 45°",s:3,r:"12-15",c:"<b style='color:var(--rust)'>POIDS DU CORPS — aucun disque</b> · c'est de la reconstruction, pas une charge",u:"PDC"},
+   {b:"C",n:"Fentes marchées haltères",s:3,r:"10-12/jbe",c:"RIR 1 · note <b>une seule jambe</b> (S1 : 24 = les deux)",u:"kg/halt"},
+   {b:"D",n:"Leg curl allongé",s:4,r:"10-12",c:"RIR 1 · hanche neutre · <b style='color:var(--blue)'>≈65 kg</b> pour tenir 10-12",u:"kg"},
    {b:"E",n:"Mollets debout",s:6,r:"10-15",c:"RIR 0-1 · genou tendu",u:"kg"}],
    cardio:null, warm:"5-8 min tapis incliné très facile"},
  3:{nom:"Séance courte", court:"Courte", ex:[
    {b:"A1",n:"Tirage vertical prise neutre",s:3,r:"10-12",c:"RIR 3 · sans forcer",u:"kg"},
-   {b:"A2",n:"Écarté poulie ou pec-deck",s:3,r:"12-15",c:"RIR 3",u:"kg"},
-   {b:"B1",n:"Rowing poulie basse",s:3,r:"12-15",c:"RIR 3",u:"kg"},
+   {b:"A2",n:"Écarté poulie ou pec-deck",s:3,r:"12-15",c:"RIR 3 · <b style='color:var(--blue)'>≈120 kg</b> (S1 : 150 → 8 reps seulement)",u:"kg"},
+   {b:"B1",n:"Rowing poulie basse",s:3,r:"12-15",c:"RIR 3 · <b style='color:var(--blue)'>≈75 kg</b> (S1 : 90 → 8 reps)",u:"kg"},
    {b:"B2",n:"Élévations latérales poulie",s:3,r:"15-20",c:"RIR 2",u:"kg"},
-   {b:"C1",n:"Curl marteau",s:2,r:"12-15",c:"RIR 2",u:"kg/halt"},
+   {b:"C1",n:"Curl marteau",s:2,r:"12-15",c:"RIR 2 · <b style='color:var(--blue)'>≈20 kg</b> (S1 : 25 → 8 reps)",u:"kg/halt"},
    {b:"C2",n:"Extension triceps poulie",s:2,r:"12-15",c:"RIR 2",u:"kg"},
    {b:"D",n:"Planche 3×45 s + Pallof 3×12",s:3,r:"45 s",c:"—",u:"—"}],
    cardio:null, note:"Sortie du travail à 23 h — séance à faible coût nerveux. RIR 3 = tu t'arrêtes loin de l'échec."},
@@ -200,10 +201,10 @@ const PROG = {
  0:{nom:"Jambes machines", court:"Jambes B", ex:[
    {b:"A",n:"Presse à cuisses",s:4,r:"10-12",c:"RIR 1 · pieds hauts",u:"kg"},
    {b:"B",n:"Fentes bulgares",s:4,r:"10-12/jbe",c:"RIR 1 · unilatéral, amplitude complète",u:"kg/halt",alt:["Hip thrust barre","Step-up banc haut"]},
-   {b:"C",n:"Leg curl assis",s:5,r:"12-15",c:"RIR 0-1 · hanche fléchie",u:"kg"},
-   {b:"D",n:"Leg extension",s:2,r:"12-15",c:"RIR 0-1",u:"kg"},
-   {b:"E",n:"Mollets assis",s:8,r:"12-15",c:"RIR 0-1 · genou fléchi, soléaire",u:"kg"},
-   {b:"F",n:"Cable pull-through",s:3,r:"12-15",c:"RIR 1 · dos neutre",u:"kg"},
+   {b:"C",n:"Leg curl assis",s:5,r:"12-15",c:"RIR 0-1 · <b style='color:var(--blue)'>≈65 kg</b> · allongé si pas d'assis, écart mineur",u:"kg",alt:["Leg curl allongé"]},
+   {b:"D",n:"Leg extension",s:2,r:"12-15",c:"RIR 0-1 · <b style='color:var(--blue)'>≈120 kg</b> (S1 : 150 → 8 reps)",u:"kg"},
+   {b:"E",n:"Mollets assis",s:8,r:"12-15",c:"RIR 0-1 · genou fléchi, soléaire · <b style='color:var(--blue)'>≈42 kg</b>",u:"kg"},
+   {b:"F",n:"Hip thrust machine",s:3,r:"12-15",c:"RIR 1 · remplace le pull-through (mal ressenti + charge lombaire)",u:"kg",alt:["Kickback poulie","Cable pull-through"]},
    {b:"G",n:"Relevés de jambes 3×12 + roue 2×10",s:3,r:"12",c:"—",u:"—"}],
    cardio:{t:"Z2 long",min:60,bpm:"138-145"},
    note:"Sortie longue de la semaine. En séance séparée si possible. Ajoute ~220 kcal à ton apport du jour."},
@@ -281,6 +282,14 @@ function vSeance(w,b){
     Décale ton lever aussi tard que possible après le mercredi tardif.</div>`+vPoidsQuick();
 
   h+=`<div class="card tight"><div style="font-size:12.5px;color:var(--dim)"><b style="color:var(--blue)">${b.n}</b> — ${b.c}</div></div>`;
+  if(!DB.revSeen)h+=`<div class="card tight" style="border-left:3px solid var(--rust)">
+    <div style="font-size:12.5px;color:var(--dim)"><b style="color:var(--rust)">Révision après la semaine 1</b><br>
+    · Extension lombaire au <b>poids du corps</b> — la version chargée a coûté 3 jours de fatigue lombaire<br>
+    · Squat <b>plafonné à 130 kg</b> jusqu'en S4, pas de série lourde isolée<br>
+    · Charges d'isolation <b>−15 à −20 %</b> pour atteindre le haut des fourchettes (42 % de tes séries s'arrêtaient à 8 reps)<br>
+    · Développé couché <b>+5 kg</b>, incliné avancé avant le militaire<br>
+    · Pull-through remplacé par le <b>hip thrust machine</b><br>
+    <button class="swap" id="revOk" style="margin-top:8px;padding:5px 12px">Compris, masquer</button></div></div>`;
   if(P.note)h+=`<div class="card tight"><div style="font-size:12.5px;color:var(--dim)">${P.note}</div></div>`;
   if(P.warm)h+=`<div class="card tight"><div style="font-size:12.5px;color:var(--dim)"><b style="color:var(--ink)">Échauffement</b> — ${P.warm}</div></div>`;
 
@@ -304,7 +313,11 @@ function vSeance(w,b){
       const top=Math.max(...prev.sets.filter(x=>x&&x.r).map(x=>+x.r||0));
       const hi=+String(e.r).split("-").pop().replace(/\D/g,"");
       const go=top&&hi&&top>=hi;
-      h+=`<div class="prev">Dernière fois (${fr(prev.date)}) : <b>${st||"—"}</b>${go?` <span class="up">→ monte la charge de 2,5 kg</span>`:""}</div>`;}
+      const maxW=Math.max(...prev.sets.filter(x=>x&&x.w).map(x=>+x.w||0));
+      const capped=e.cap&&w<=(e.capW||99)&&maxW>=e.cap;
+      h+=`<div class="prev">Dernière fois (${fr(prev.date)}) : <b>${st||"—"}</b>${
+        capped?` <span class="cap">→ plafond ${e.cap} kg — reste ici, gagne des reps</span>`
+        :(go?` <span class="up">→ monte la charge de 2,5 kg</span>`:"")}</div>`;}
     h+=`</div>`;
   });
 
@@ -577,6 +590,9 @@ function bind(){
     const nxt=all[(all.indexOf(cur)+1)%all.length];
     if(nxt===e.n)delete DB.swaps[dow+"|"+i];else DB.swaps[dow+"|"+i]=nxt;
     save();render();toast(nxt);});
+
+  const rv=document.getElementById("revOk");
+  if(rv)rv.onclick=()=>{DB.revSeen=1;save();render();};
 
   const st=document.querySelector("[data-set='start']");
   if(st)st.onchange=()=>{DB.start=st.value;save();render();toast("Semaine 1 définie");};
