@@ -145,7 +145,7 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:15px 0}
     <div>
       <div class="title" id="hTitle">Coach 12 semaines</div>
       <div class="sub" id="hSub">—</div>
-      <div class="ver">v4 · 09/11/2026</div>
+      <div class="ver">v5 · 09/11/2026</div>
     </div>
     <div class="badge" id="hBadge">S1</div>
   </div>
@@ -169,58 +169,58 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:15px 0}
 /* ============ PROGRAMME ============ */
 const PROG = {
  1:{nom:"Poussée lourde", court:"Poussée", ex:[
-   {b:"A1",n:"Développé couché barre",s:4,r:"5-7",u:"kg",w6:["47.5 kg","55 kg","62.5 kg","67.5 kg","70 kg","72.5 kg"],res:[4,3,3,2,2,2],c:"Repos 3 min entre les séries."},
-   {b:"A2",n:"Développé incliné haltères",s:3,r:"8-10",u:"kg/halt",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"Pas de charge de référence — calibre en S1 et l'app retiendra."},
-   {b:"B1",n:"Développé militaire debout",s:4,r:"6-8",u:"kg",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"Repos 2-3 min. Pas de charge de référence — calibre en S1."},
-   {b:"B2",n:"Élévations latérales",s:4,r:"12-15",u:"kg/halt",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,2,1,1,1],c:"Pas de charge de référence — calibre en S1."},
-   {b:"C1",n:"Dips",s:3,r:"10-12",u:"kg lest",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"Utilise la machine d'assistance en S1-S2 si besoin.",alt:["Écarté à la poulie"]},
-   {b:"C2",n:"Extension triceps overhead",s:3,r:"10-12",u:"kg",w6:["27.5 kg","32.5 kg","35 kg","37.5 kg","40 kg","42.5 kg"],res:[4,3,3,2,2,2],c:"Référence estimée (42 kg), pas loguée — recale si c'est trop léger."},
-   {b:"D",n:"Crunch poulie",s:3,r:"12",u:"kg",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,2,1,1,1],c:"+ gainage latéral 2×30 s."}],
+   {b:"A1",n:"Développé couché barre",s:4,r:"5-7",u:"kg",w6:["62.5 kg", "70 kg", "80 kg", "87.5 kg", "92.5 kg", "95 kg"],res:[4,3,3,2,2,2],c:"Référence août : 90×8 95×7 95×7 95×10. Repos 3 min entre les séries."},
+   {b:"A2",n:"Développé incliné haltères",s:3,r:"8-10",u:"kg/halt",w6:["32.5 kg", "37.5 kg", "42.5 kg", "45 kg", "47.5 kg", "50 kg"],res:[4,3,3,2,2,2],c:"Référence août : 50×8 50×8 50×10. Pas de charge de référence — calibre en S1 et l'app retiendra."},
+   {b:"B1",n:"Développé militaire debout",s:4,r:"6-8",u:"kg",w6:["50 kg", "60 kg", "70 kg", "75 kg", "80 kg", "80 kg"],res:[4,3,3,2,2,2],c:"Référence août : 80×8 ×4. Repos 2-3 min. Pas de charge de référence — calibre en S1."},
+   {b:"B2",n:"Élévations latérales",s:4,r:"12-15",u:"kg/halt",w6:["7.5 kg", "10 kg", "10 kg", "12.5 kg", "12.5 kg", "12.5 kg"],res:[4,3,2,1,1,1],c:"Référence août : 12.5×15 12.5×12 ×3. Pas de charge de référence — calibre en S1."},
+   {b:"C1",n:"Dips",s:3,r:"10-12",u:"kg lest",w6:["15 kg", "20 kg", "20 kg", "22.5 kg", "25 kg", "25 kg"],res:[4,3,3,2,2,2],c:"Référence août : 25×8 25×10 25×8 (lest). Utilise la machine d'assistance en S1-S2 si besoin.",alt:["Écarté à la poulie"]},
+   {b:"C2",n:"Extension triceps overhead",s:3,r:"10-12",u:"kg",w6:["20 kg", "25 kg", "27.5 kg", "30 kg", "32.5 kg", "32.5 kg"],res:[4,3,3,2,2,2],c:"Référence août : 32.5×8 32.5×6 32.5×8. Référence estimée (42 kg), pas loguée — recale si c'est trop léger."},
+   {b:"D",n:"Crunch poulie",s:3,r:"12",u:"kg",w6:["40 kg", "50 kg", "55 kg", "60 kg", "65 kg", "65 kg"],res:[4,3,2,1,1,1],c:"Référence août : 62.5×15 62.5×15 67.5×12. + gainage latéral 2×30 s."}],
    cardio:{t:"Z2 tapis",min:25,bpm:"138-145"}
   },
  2:{nom:"Jambes barre", court:"Jambes A", ex:[
-   {b:"A",n:"Squat barre",s:4,r:"5-8",u:"kg",w6:["NE PAS FAIRE","70 kg","77.5 kg","85 kg","90 kg","92.5 kg"],res:[4,3,3,2,2,2],c:"Repos 3 min. Aucune série au maximum avant la semaine 4.",alt:["Presse à cuisses"]},
-   {b:"B",n:"Extension lombaire 45°",s:3,r:"12-15",u:"—",w6:["NE PAS FAIRE","poids du corps","poids du corps","poids du corps","poids du corps","poids du corps"],res:[4,3,3,2,2,2],c:"Aucun disque, jamais. C'est de la reconstruction, pas une charge."},
-   {b:"C",n:"Fentes marchées haltères",s:3,r:"10-12/jbe",u:"kg/halt",w6:["NE PAS FAIRE","NE PAS FAIRE","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"2 séries seulement en S3. C'est le plus gros producteur de courbatures du plan."},
-   {b:"D",n:"Leg curl allongé",s:4,r:"10-12",u:"kg",w6:["40 kg","50 kg","55 kg","60 kg","65 kg","65 kg"],res:[4,3,3,2,2,2],c:"Référence estimée (65 kg), pas loguée. Hanche neutre."},
-   {b:"E",n:"Mollets debout",s:6,r:"10-15",u:"kg",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,2,1,1,1],c:"3 séries seulement en S1 et S2 — gros producteur de courbatures."}],
+   {b:"A",n:"Squat barre",s:4,r:"5-8",u:"kg",w6:["NE PAS FAIRE", "105 kg", "120 kg", "130 kg", "135 kg", "140 kg"],res:[4,3,3,2,2,2],c:"Référence août : 130×8 140×8 140×8 140×8. Repos 3 min. Aucune série au maximum avant la semaine 4.",alt:["Presse à cuisses"]},
+   {b:"B",n:"Extension lombaire 45°",s:3,r:"12-15",u:"—",w6:["NE PAS FAIRE", "poids du corps", "poids du corps", "poids du corps", "poids du corps", "poids du corps"],res:[4,3,3,2,2,2],c:"Aucun disque, jamais. C'est de la reconstruction, pas une charge."},
+   {b:"C",n:"Fentes marchées haltères",s:3,r:"10-12/jbe",u:"kg/halt",w6:["NE PAS FAIRE", "NE PAS FAIRE", "50 kg", "55 kg", "57.5 kg", "60 kg"],res:[4,3,3,2,2,2],c:"Référence août : 60×12 ×3. 2 séries seulement en S3. C'est le plus gros producteur de courbatures du plan."},
+   {b:"D",n:"Leg curl allongé",s:4,r:"10-12",u:"kg",w6:["50 kg", "55 kg", "65 kg", "70 kg", "75 kg", "75 kg"],res:[4,3,3,2,2,2],c:"Référence août : 80×8 70×12 70×12. Référence estimée (65 kg), pas loguée. Hanche neutre."},
+   {b:"E",n:"Mollets debout",s:6,r:"10-15",u:"kg",w6:["40 kg", "45 kg", "50 kg", "55 kg", "60 kg", "60 kg"],res:[4,3,2,1,1,1],c:"Référence août : 60×15 ×4. 3 séries seulement en S1 et S2 — gros producteur de courbatures."}],
    cardio:null,
    warm:"5-8 min tapis incliné très facile"
   },
  3:{nom:"Séance courte", court:"Courte", ex:[
-   {b:"A1",n:"Tirage vertical prise neutre",s:3,r:"10-12",u:"kg",w6:["90 kg","100 kg","115 kg","125 kg","130 kg","135 kg"],res:[4,4,3,3,3,3],c:"Séance légère : tu dois en sortir en te sentant mieux qu'en entrant."},
-   {b:"A2",n:"Écarté poulie ou pec-deck",s:3,r:"12-15",u:"kg",w6:["90 kg","100 kg","115 kg","125 kg","130 kg","135 kg"],res:[4,4,3,3,3,3],c:""},
-   {b:"B1",n:"Rowing poulie basse",s:3,r:"12-15",u:"kg",w6:["60 kg","70 kg","80 kg","85 kg","90 kg","95 kg"],res:[4,4,3,3,3,3],c:""},
-   {b:"B2",n:"Élévations latérales poulie",s:3,r:"15-20",u:"kg",w6:["7.5 kg","10 kg","10 kg","12.5 kg","12.5 kg","12.5 kg"],res:[4,4,3,2,2,2],c:""},
-   {b:"C1",n:"Curl marteau",s:2,r:"12-15",u:"kg/halt",w6:["15 kg","20 kg","20 kg","22.5 kg","25 kg","25 kg"],res:[4,4,3,2,2,2],c:""},
-   {b:"C2",n:"Extension triceps poulie",s:2,r:"12-15",u:"kg",w6:["60 kg","70 kg","75 kg","85 kg","85 kg","90 kg"],res:[4,4,3,2,2,2],c:""},
-   {b:"D",n:"Planche 3×45 s + Pallof 3×12",s:3,r:"45 s",u:"—",w6:["—","—","—","—","—","—"],res:[3,3,3,3,3,3],c:""}],
+   {b:"A1",n:"Tirage vertical prise neutre",s:3,r:"10-12",u:"kg",w6:["90 kg", "100 kg", "115 kg", "125 kg", "130 kg", "135 kg"],res:[4,4,3,3,3,3],c:"Référence août : 120×12 ×3 · 135×10 en S4. Séance légère : tu dois en sortir en te sentant mieux qu'en entrant."},
+   {b:"A2",n:"Écarté poulie ou pec-deck",s:3,r:"12-15",u:"kg",w6:["90 kg", "100 kg", "115 kg", "125 kg", "130 kg", "135 kg"],res:[4,4,3,3,3,3],c:"Référence août : 135×12 ×3."},
+   {b:"B1",n:"Rowing poulie basse",s:3,r:"12-15",u:"kg",w6:["60 kg", "70 kg", "80 kg", "85 kg", "90 kg", "95 kg"],res:[4,4,3,3,3,3],c:"Référence août : 90×15 ×3 · 95×15 en S4."},
+   {b:"B2",n:"Élévations latérales poulie",s:3,r:"15-20",u:"kg",w6:["7.5 kg", "10 kg", "10 kg", "12.5 kg", "12.5 kg", "12.5 kg"],res:[4,4,3,2,2,2],c:"Référence août : 14×12 12.5×15 ×2."},
+   {b:"C1",n:"Curl marteau",s:2,r:"12-15",u:"kg/halt",w6:["15 kg", "20 kg", "20 kg", "22.5 kg", "25 kg", "25 kg"],res:[4,4,3,2,2,2],c:"Référence août : 20×15 ×2 · 25×15 en S4."},
+   {b:"C2",n:"Extension triceps poulie",s:2,r:"12-15",u:"kg",w6:["60 kg", "70 kg", "75 kg", "85 kg", "85 kg", "90 kg"],res:[4,4,3,2,2,2],c:"Référence août : 90×12 ×2."},
+   {b:"D",n:"Planche 3×45 s + Pallof 3×12",s:3,r:"45 s",u:"—",w6:["—", "—", "—", "—", "—", "—"],res:[3,3,3,3,3,3],c:"Référence août : 105×12 105×10."}],
    cardio:null,
    note:"Séance volontairement facile. Tu t'arrêtes loin du maximum sur chaque série."
   },
  5:{nom:"Course seule", court:"Course", ex:[
-   {b:"A",n:"Course Z2",s:1,r:"20-35 min",u:"min",w6:["20 min","25 min","25 min","30 min","30 min","35 min"],res:[0,0,0,0,0,0],c:"Allure conversation : tu dois pouvoir parler en phrases complètes. 138-145 bpm."}],
+   {b:"A",n:"Course Z2",s:1,r:"20-35 min",u:"min",w6:["20 min", "25 min", "25 min", "30 min", "30 min", "35 min"],res:[0,0,0,0,0,0],c:"Allure conversation : tu dois pouvoir parler en phrases complètes. 138-145 bpm."}],
    cardio:{t:"Z2 extérieur",min:25,bpm:"138-145"},
    note:"Le HIIT est retiré du plan. Tu peux l'ajouter en surplus à partir de la semaine 5 — jamais avant : après deux mois d'arrêt c'est le tendon et le tibia qui limitent, pas le souffle."
   },
  6:{nom:"Jambes machines", court:"Jambes B", ex:[
-   {b:"A",n:"Presse à cuisses",s:4,r:"10-12",u:"kg",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"Amplitude contrôlée, pas de descente profonde. Calibre en S1."},
-   {b:"B",n:"Hip thrust barre",s:4,r:"10-12",u:"kg",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"Remplace les fentes bulgares jusqu'en S4 : pas d'étirement sous charge.",alt:["Fentes bulgares","Step-up banc haut"]},
-   {b:"C",n:"Leg curl assis",s:5,r:"12-15",u:"kg",w6:["40 kg","50 kg","55 kg","60 kg","65 kg","65 kg"],res:[4,3,3,2,2,2],c:"3 séries seulement en S1. Référence estimée (65 kg), pas loguée.",alt:["Leg curl allongé"]},
-   {b:"D",n:"Leg extension",s:2,r:"12-15",u:"kg",w6:["80 kg","90 kg","100 kg","110 kg","115 kg","120 kg"],res:[4,3,2,1,1,1],c:"Référence estimée (120 kg), pas loguée. Le moins traumatisant des mouvements de quadriceps."},
-   {b:"E",n:"Mollets assis",s:8,r:"12-15",u:"kg",w6:["27.5 kg","32.5 kg","35 kg","37.5 kg","40 kg","42.5 kg"],res:[4,3,2,1,1,1],c:"3 séries en S1, 5 en S2, puis 8. Référence estimée (42 kg)."},
-   {b:"F",n:"Hip thrust machine",s:3,r:"12-15",u:"kg",w6:["NE PAS FAIRE","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"À partir de S2.",alt:["Kickback poulie"]},
-   {b:"G",n:"Relevés de jambes 3×12 + roue 2×10",s:3,r:"12",u:"—",w6:["—","—","—","—","—","—"],res:[3,3,3,3,3,3],c:""}],
+   {b:"A",n:"Presse à cuisses",s:4,r:"10-12",u:"kg",w6:["290 kg", "340 kg", "380 kg", "410 kg", "440 kg", "450 kg"],res:[4,3,3,2,2,2],c:"Référence août : 450×12 ×4. Amplitude contrôlée, pas de descente profonde. Calibre en S1."},
+   {b:"B",n:"Hip thrust barre",s:4,r:"10-12",u:"kg",w6:["à calibrer", "à calibrer", "à calibrer", "à calibrer", "à calibrer", "à calibrer"],res:[4,3,3,2,2,2],c:"Remplace les fentes bulgares jusqu'en S4 : pas d'étirement sous charge.",alt:["Fentes bulgares","Step-up banc haut"]},
+   {b:"C",n:"Leg curl assis",s:5,r:"12-15",u:"kg",w6:["45 kg", "50 kg", "60 kg", "65 kg", "70 kg", "70 kg"],res:[4,3,3,2,2,2],c:"Référence août : 70×12 ×2 60×12 ×3. 3 séries seulement en S1. Référence estimée (65 kg), pas loguée.",alt:["Leg curl allongé"]},
+   {b:"D",n:"Leg extension",s:2,r:"12-15",u:"kg",w6:["80 kg", "90 kg", "100 kg", "110 kg", "115 kg", "120 kg"],res:[4,3,2,1,1,1],c:"Référence août : 120×14 120×12. Référence estimée (120 kg), pas loguée. Le moins traumatisant des mouvements de quadriceps."},
+   {b:"E",n:"Mollets assis",s:8,r:"12-15",u:"kg",w6:["30 kg", "40 kg", "40 kg", "45 kg", "50 kg", "50 kg"],res:[4,3,2,1,1,1],c:"Référence août : 50×10 ×5 (séance du 16/8). 3 séries en S1, 5 en S2, puis 8. Référence estimée (42 kg)."},
+   {b:"F",n:"Hip thrust machine",s:3,r:"12-15",u:"kg",w6:["NE PAS FAIRE", "à calibrer", "à calibrer", "à calibrer", "à calibrer", "à calibrer"],res:[4,3,3,2,2,2],c:"À partir de S2.",alt:["Kickback poulie"]},
+   {b:"G",n:"Relevés de jambes 3×12 + roue 2×10",s:3,r:"12",u:"—",w6:["—", "—", "—", "—", "—", "—"],res:[3,3,3,3,3,3],c:"Référence août : 90×10 100×10 100×10."}],
    cardio:null,
    note:"SEMAINE 1 : c'est ta seule séance de jambes, et elle est volontairement légère. Elle protège les semaines suivantes — tu ne gagnes rien à la rendre dure."
   },
  0:{nom:"Tirage lourd + bras", court:"Tirage", ex:[
-   {b:"A1",n:"Traction lestée",s:4,r:"6-8",u:"kg lest",w6:["élastique assisté","élastique assisté","poids du corps","poids du corps","poids du corps","poids du corps"],res:[4,3,3,2,2,2],c:"Repos 2-3 min.",alt:["Tirage vertical"]},
-   {b:"A2",n:"Rowing banc incliné poitrine appuyée",s:4,r:"8-10",u:"kg",w6:["65 kg","75 kg","85 kg","90 kg","95 kg","100 kg"],res:[4,3,3,2,2,2],c:"Poitrine appuyée : épargne les lombaires."},
-   {b:"B1",n:"Tirage horizontal poulie",s:3,r:"10-12",u:"kg",w6:["70 kg","80 kg","90 kg","95 kg","100 kg","105 kg"],res:[4,3,3,2,2,2],c:""},
-   {b:"B2",n:"Face pull",s:3,r:"15-20",u:"kg",w6:["45 kg","50 kg","60 kg","65 kg","70 kg","70 kg"],res:[4,3,2,1,1,1],c:"Santé d'épaule — ne cherche pas la charge."},
-   {b:"C1",n:"Curl barre EZ",s:3,r:"8-10",u:"kg",w6:["65 kg","75 kg","85 kg","90 kg","95 kg","100 kg"],res:[4,3,3,2,2,2],c:""},
-   {b:"C2",n:"Barre au front",s:3,r:"10-12",u:"kg",w6:["30 kg","35 kg","37.5 kg","42.5 kg","42.5 kg","45 kg"],res:[4,3,3,2,2,2],c:"Référence estimée (45 kg) : tes logs d'août étaient en dents de scie (40/50/30). Recale en S3."}],
+   {b:"A1",n:"Traction lestée",s:4,r:"6-8",u:"kg lest",w6:["élastique assisté", "élastique assisté", "poids du corps", "poids du corps", "poids du corps", "poids du corps"],res:[4,3,3,2,2,2],c:"Référence août : 0×8 ×4 (poids de corps). Repos 2-3 min.",alt:["Tirage vertical"]},
+   {b:"A2",n:"Rowing banc incliné poitrine appuyée",s:4,r:"8-10",u:"kg",w6:["65 kg", "75 kg", "85 kg", "90 kg", "95 kg", "100 kg"],res:[4,3,3,2,2,2],c:"Référence août : 90×10 100×8 100×8 90×8. Poitrine appuyée : épargne les lombaires."},
+   {b:"B1",n:"Tirage horizontal poulie",s:3,r:"10-12",u:"kg",w6:["70 kg", "80 kg", "90 kg", "95 kg", "100 kg", "105 kg"],res:[4,3,3,2,2,2],c:""},
+   {b:"B2",n:"Face pull",s:3,r:"15-20",u:"kg",w6:["45 kg", "50 kg", "60 kg", "65 kg", "70 kg", "70 kg"],res:[4,3,2,1,1,1],c:"Référence août : 60×15 70×15 70×20. Santé d'épaule — ne cherche pas la charge."},
+   {b:"C1",n:"Curl barre EZ",s:3,r:"8-10",u:"kg",w6:["65 kg", "75 kg", "85 kg", "90 kg", "95 kg", "100 kg"],res:[4,3,3,2,2,2],c:""},
+   {b:"C2",n:"Barre au front",s:3,r:"10-12",u:"kg",w6:["25 kg", "30 kg", "35 kg", "37.5 kg", "40 kg", "40 kg"],res:[4,3,3,2,2,2],c:"Référence août : 40×12 40×10 40×10. Référence estimée (45 kg) : tes logs d'août étaient en dents de scie (40/50/30). Recale en S3."}],
    cardio:{t:"Z2 long",min:45,bpm:"138-145"},
    note:"Sortie longue de la semaine, en séance séparée si possible."
   },
