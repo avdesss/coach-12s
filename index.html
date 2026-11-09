@@ -127,6 +127,15 @@ pre.rep{background:var(--card2);border:1px solid var(--line);border-radius:11px;
 .dsel button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
 .dsel button.rest{opacity:.5}
 hr.sep{border:0;border-top:1px solid var(--line);margin:15px 0}
+
+.chg{display:flex;align-items:baseline;gap:10px;margin-top:8px;padding:9px 11px;
+  background:var(--card2);border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:9px;flex-wrap:wrap}
+.chg-lab{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;font-weight:700}
+.chg-val{font-size:21px;font-weight:800;color:var(--blue);letter-spacing:-.4px}
+.chg-val.todo{font-size:14px;color:var(--rust);font-weight:700}
+.chg-val.skip{font-size:14px;color:var(--rust);font-weight:800}
+.chg-eff{font-size:11.5px;color:var(--dim);width:100%;margin-top:1px}
+.ver{font-size:10px;color:var(--dim);opacity:.6;margin-top:2px;letter-spacing:.3px}
 </style>
 </head>
 <body>
@@ -136,6 +145,7 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:15px 0}
     <div>
       <div class="title" id="hTitle">Coach 12 semaines</div>
       <div class="sub" id="hSub">—</div>
+      <div class="ver">v4 · 09/11/2026</div>
     </div>
     <div class="badge" id="hBadge">S1</div>
   </div>
@@ -159,63 +169,70 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:15px 0}
 /* ============ PROGRAMME ============ */
 const PROG = {
  1:{nom:"Poussée lourde", court:"Poussée", ex:[
-   {b:"A1",n:"Développé couché barre",s:4,r:"5-7",c:"RIR 2 · repos 3 min · <b style='color:var(--blue)'>monte à 95-97,5 kg</b> (S1 : 10 reps à 90 = trop léger)",u:"kg"},
-   {b:"A2",n:"Développé incliné haltères",s:3,r:"8-10",c:"RIR 1-2 · <b style='color:var(--blue)'>déplacé avant le militaire</b> (S1 : plus de force en fin de séance)",u:"kg/halt"},
-   {b:"B1",n:"Développé militaire debout",s:4,r:"6-8",c:"RIR 2 · repos 2-3 min · coûteux nerveusement, d'où sa 3ᵉ position",u:"kg"},
-   {b:"B2",n:"Élévations latérales",s:4,r:"12-15",c:"RIR 0-1",u:"kg/halt"},
-   {b:"C1",n:"Dips",s:3,r:"10-12",c:"RIR 1",u:"kg lest",alt:["Écarté à la poulie"]},
-   {b:"C2",n:"Extension triceps overhead",s:3,r:"10-12",c:"RIR 1 · <b style='color:var(--blue)'>≈42 kg</b> pour tenir 10-12",u:"kg"},
-   {b:"D",n:"Crunch poulie",s:3,r:"12",c:"+ gainage latéral 2×30 s",u:"kg"}],
-   cardio:{t:"Z2 tapis",min:25,bpm:"138-145"}},
+   {b:"A1",n:"Développé couché barre",s:4,r:"5-7",u:"kg",w6:["47.5 kg","55 kg","62.5 kg","67.5 kg","70 kg","72.5 kg"],res:[4,3,3,2,2,2],c:"Repos 3 min entre les séries."},
+   {b:"A2",n:"Développé incliné haltères",s:3,r:"8-10",u:"kg/halt",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"Pas de charge de référence — calibre en S1 et l'app retiendra."},
+   {b:"B1",n:"Développé militaire debout",s:4,r:"6-8",u:"kg",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"Repos 2-3 min. Pas de charge de référence — calibre en S1."},
+   {b:"B2",n:"Élévations latérales",s:4,r:"12-15",u:"kg/halt",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,2,1,1,1],c:"Pas de charge de référence — calibre en S1."},
+   {b:"C1",n:"Dips",s:3,r:"10-12",u:"kg lest",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"Utilise la machine d'assistance en S1-S2 si besoin.",alt:["Écarté à la poulie"]},
+   {b:"C2",n:"Extension triceps overhead",s:3,r:"10-12",u:"kg",w6:["27.5 kg","32.5 kg","35 kg","37.5 kg","40 kg","42.5 kg"],res:[4,3,3,2,2,2],c:"Référence estimée (42 kg), pas loguée — recale si c'est trop léger."},
+   {b:"D",n:"Crunch poulie",s:3,r:"12",u:"kg",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,2,1,1,1],c:"+ gainage latéral 2×30 s."}],
+   cardio:{t:"Z2 tapis",min:25,bpm:"138-145"}
+  },
  2:{nom:"Jambes barre", court:"Jambes A", ex:[
-   {b:"A",n:"Squat barre",s:4,r:"5-8",c:"RIR 2 · repos 3 min · <b style='color:var(--rust)'>plafond 130 kg jusqu'en S4</b> · pas de série lourde isolée",u:"kg",cap:130,capW:4,alt:["Presse à cuisses"]},
-   {b:"B",n:"Extension lombaire 45°",s:3,r:"12-15",c:"<b style='color:var(--rust)'>POIDS DU CORPS — aucun disque</b> · c'est de la reconstruction, pas une charge",u:"PDC"},
-   {b:"C",n:"Fentes marchées haltères",s:3,r:"10-12/jbe",c:"RIR 1 · note <b>une seule jambe</b> (S1 : 24 = les deux)",u:"kg/halt"},
-   {b:"D",n:"Leg curl allongé",s:4,r:"10-12",c:"RIR 1 · hanche neutre · <b style='color:var(--blue)'>≈65 kg</b> pour tenir 10-12",u:"kg"},
-   {b:"E",n:"Mollets debout",s:6,r:"10-15",c:"RIR 0-1 · genou tendu",u:"kg"}],
-   cardio:null, warm:"5-8 min tapis incliné très facile"},
+   {b:"A",n:"Squat barre",s:4,r:"5-8",u:"kg",w6:["NE PAS FAIRE","70 kg","77.5 kg","85 kg","90 kg","92.5 kg"],res:[4,3,3,2,2,2],c:"Repos 3 min. Aucune série au maximum avant la semaine 4.",alt:["Presse à cuisses"]},
+   {b:"B",n:"Extension lombaire 45°",s:3,r:"12-15",u:"—",w6:["NE PAS FAIRE","poids du corps","poids du corps","poids du corps","poids du corps","poids du corps"],res:[4,3,3,2,2,2],c:"Aucun disque, jamais. C'est de la reconstruction, pas une charge."},
+   {b:"C",n:"Fentes marchées haltères",s:3,r:"10-12/jbe",u:"kg/halt",w6:["NE PAS FAIRE","NE PAS FAIRE","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"2 séries seulement en S3. C'est le plus gros producteur de courbatures du plan."},
+   {b:"D",n:"Leg curl allongé",s:4,r:"10-12",u:"kg",w6:["40 kg","50 kg","55 kg","60 kg","65 kg","65 kg"],res:[4,3,3,2,2,2],c:"Référence estimée (65 kg), pas loguée. Hanche neutre."},
+   {b:"E",n:"Mollets debout",s:6,r:"10-15",u:"kg",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,2,1,1,1],c:"3 séries seulement en S1 et S2 — gros producteur de courbatures."}],
+   cardio:null,
+   warm:"5-8 min tapis incliné très facile"
+  },
  3:{nom:"Séance courte", court:"Courte", ex:[
-   {b:"A1",n:"Tirage vertical prise neutre",s:3,r:"10-12",c:"RIR 3 · sans forcer",u:"kg"},
-   {b:"A2",n:"Écarté poulie ou pec-deck",s:3,r:"12-15",c:"RIR 3 · <b style='color:var(--blue)'>≈120 kg</b> (S1 : 150 → 8 reps seulement)",u:"kg"},
-   {b:"B1",n:"Rowing poulie basse",s:3,r:"12-15",c:"RIR 3 · <b style='color:var(--blue)'>≈75 kg</b> (S1 : 90 → 8 reps)",u:"kg"},
-   {b:"B2",n:"Élévations latérales poulie",s:3,r:"15-20",c:"RIR 2",u:"kg"},
-   {b:"C1",n:"Curl marteau",s:2,r:"12-15",c:"RIR 2 · <b style='color:var(--blue)'>≈20 kg</b> (S1 : 25 → 8 reps)",u:"kg/halt"},
-   {b:"C2",n:"Extension triceps poulie",s:2,r:"12-15",c:"RIR 2",u:"kg"},
-   {b:"D",n:"Planche 3×45 s + Pallof 3×12",s:3,r:"45 s",c:"—",u:"—"}],
-   cardio:null, note:"Sortie du travail à 23 h — séance à faible coût nerveux. RIR 3 = tu t'arrêtes loin de l'échec."},
- 5:{nom:"Haute intensité", court:"HIIT", hiit:true, ex:[
-   {b:"1",n:"Échauffement progressif",s:1,r:"10 min",c:"montée graduelle",u:"min"},
-   {b:"2",n:"4×4 — effort",s:4,r:"4 min",c:"90-95 % FCmax · 166-176 bpm",u:"bpm"},
-   {b:"3",n:"4×4 — récup",s:4,r:"3 min",c:"111-129 bpm · marche/trot",u:"bpm"},
-   {b:"4",n:"Circuit (burpees/box jump/corde)",s:3,r:"tour",c:"si énergie restante",u:"—"},
-   {b:"5",n:"Retour au calme",s:1,r:"5 min",c:"—",u:"min"}],
-   cardio:null},
- 6:{nom:"Tirage lourd + bras", court:"Tirage", ex:[
-   {b:"A1",n:"Traction lestée",s:4,r:"6-8",c:"RIR 2 · repos 2-3 min",u:"kg lest",alt:["Tirage vertical"]},
-   {b:"A2",n:"Rowing banc incliné poitrine appuyée",s:4,r:"8-10",c:"RIR 2 · épargne les lombaires",u:"kg"},
-   {b:"B1",n:"Tirage horizontal poulie",s:3,r:"10-12",c:"RIR 1",u:"kg"},
-   {b:"B2",n:"Face pull",s:3,r:"15-20",c:"RIR 1 · santé d'épaule",u:"kg"},
-   {b:"C1",n:"Curl barre EZ",s:3,r:"8-10",c:"RIR 1",u:"kg"},
-   {b:"C2",n:"Barre au front",s:3,r:"10-12",c:"RIR 0-1",u:"kg"}],
-   cardio:{t:"Z2 tapis",min:30,bpm:"138-145"}},
- 0:{nom:"Jambes machines", court:"Jambes B", ex:[
-   {b:"A",n:"Presse à cuisses",s:4,r:"10-12",c:"RIR 1 · pieds hauts",u:"kg"},
-   {b:"B",n:"Fentes bulgares",s:4,r:"10-12/jbe",c:"RIR 1 · unilatéral, amplitude complète",u:"kg/halt",alt:["Hip thrust barre","Step-up banc haut"]},
-   {b:"C",n:"Leg curl assis",s:5,r:"12-15",c:"RIR 0-1 · <b style='color:var(--blue)'>≈65 kg</b> · allongé si pas d'assis, écart mineur",u:"kg",alt:["Leg curl allongé"]},
-   {b:"D",n:"Leg extension",s:2,r:"12-15",c:"RIR 0-1 · <b style='color:var(--blue)'>≈120 kg</b> (S1 : 150 → 8 reps)",u:"kg"},
-   {b:"E",n:"Mollets assis",s:8,r:"12-15",c:"RIR 0-1 · genou fléchi, soléaire · <b style='color:var(--blue)'>≈42 kg</b>",u:"kg"},
-   {b:"F",n:"Hip thrust machine",s:3,r:"12-15",c:"RIR 1 · remplace le pull-through (mal ressenti + charge lombaire)",u:"kg",alt:["Kickback poulie","Cable pull-through"]},
-   {b:"G",n:"Relevés de jambes 3×12 + roue 2×10",s:3,r:"12",c:"—",u:"—"}],
-   cardio:{t:"Z2 long",min:60,bpm:"138-145"},
-   note:"Sortie longue de la semaine. En séance séparée si possible. Ajoute ~220 kcal à ton apport du jour."},
+   {b:"A1",n:"Tirage vertical prise neutre",s:3,r:"10-12",u:"kg",w6:["90 kg","100 kg","115 kg","125 kg","130 kg","135 kg"],res:[4,4,3,3,3,3],c:"Séance légère : tu dois en sortir en te sentant mieux qu'en entrant."},
+   {b:"A2",n:"Écarté poulie ou pec-deck",s:3,r:"12-15",u:"kg",w6:["90 kg","100 kg","115 kg","125 kg","130 kg","135 kg"],res:[4,4,3,3,3,3],c:""},
+   {b:"B1",n:"Rowing poulie basse",s:3,r:"12-15",u:"kg",w6:["60 kg","70 kg","80 kg","85 kg","90 kg","95 kg"],res:[4,4,3,3,3,3],c:""},
+   {b:"B2",n:"Élévations latérales poulie",s:3,r:"15-20",u:"kg",w6:["7.5 kg","10 kg","10 kg","12.5 kg","12.5 kg","12.5 kg"],res:[4,4,3,2,2,2],c:""},
+   {b:"C1",n:"Curl marteau",s:2,r:"12-15",u:"kg/halt",w6:["15 kg","20 kg","20 kg","22.5 kg","25 kg","25 kg"],res:[4,4,3,2,2,2],c:""},
+   {b:"C2",n:"Extension triceps poulie",s:2,r:"12-15",u:"kg",w6:["60 kg","70 kg","75 kg","85 kg","85 kg","90 kg"],res:[4,4,3,2,2,2],c:""},
+   {b:"D",n:"Planche 3×45 s + Pallof 3×12",s:3,r:"45 s",u:"—",w6:["—","—","—","—","—","—"],res:[3,3,3,3,3,3],c:""}],
+   cardio:null,
+   note:"Séance volontairement facile. Tu t'arrêtes loin du maximum sur chaque série."
+  },
+ 5:{nom:"Course seule", court:"Course", ex:[
+   {b:"A",n:"Course Z2",s:1,r:"20-35 min",u:"min",w6:["20 min","25 min","25 min","30 min","30 min","35 min"],res:[0,0,0,0,0,0],c:"Allure conversation : tu dois pouvoir parler en phrases complètes. 138-145 bpm."}],
+   cardio:{t:"Z2 extérieur",min:25,bpm:"138-145"},
+   note:"Le HIIT est retiré du plan. Tu peux l'ajouter en surplus à partir de la semaine 5 — jamais avant : après deux mois d'arrêt c'est le tendon et le tibia qui limitent, pas le souffle."
+  },
+ 6:{nom:"Jambes machines", court:"Jambes B", ex:[
+   {b:"A",n:"Presse à cuisses",s:4,r:"10-12",u:"kg",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"Amplitude contrôlée, pas de descente profonde. Calibre en S1."},
+   {b:"B",n:"Hip thrust barre",s:4,r:"10-12",u:"kg",w6:["à calibrer","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"Remplace les fentes bulgares jusqu'en S4 : pas d'étirement sous charge.",alt:["Fentes bulgares","Step-up banc haut"]},
+   {b:"C",n:"Leg curl assis",s:5,r:"12-15",u:"kg",w6:["40 kg","50 kg","55 kg","60 kg","65 kg","65 kg"],res:[4,3,3,2,2,2],c:"3 séries seulement en S1. Référence estimée (65 kg), pas loguée.",alt:["Leg curl allongé"]},
+   {b:"D",n:"Leg extension",s:2,r:"12-15",u:"kg",w6:["80 kg","90 kg","100 kg","110 kg","115 kg","120 kg"],res:[4,3,2,1,1,1],c:"Référence estimée (120 kg), pas loguée. Le moins traumatisant des mouvements de quadriceps."},
+   {b:"E",n:"Mollets assis",s:8,r:"12-15",u:"kg",w6:["27.5 kg","32.5 kg","35 kg","37.5 kg","40 kg","42.5 kg"],res:[4,3,2,1,1,1],c:"3 séries en S1, 5 en S2, puis 8. Référence estimée (42 kg)."},
+   {b:"F",n:"Hip thrust machine",s:3,r:"12-15",u:"kg",w6:["NE PAS FAIRE","à calibrer","à calibrer","à calibrer","à calibrer","à calibrer"],res:[4,3,3,2,2,2],c:"À partir de S2.",alt:["Kickback poulie"]},
+   {b:"G",n:"Relevés de jambes 3×12 + roue 2×10",s:3,r:"12",u:"—",w6:["—","—","—","—","—","—"],res:[3,3,3,3,3,3],c:""}],
+   cardio:null,
+   note:"SEMAINE 1 : c'est ta seule séance de jambes, et elle est volontairement légère. Elle protège les semaines suivantes — tu ne gagnes rien à la rendre dure."
+  },
+ 0:{nom:"Tirage lourd + bras", court:"Tirage", ex:[
+   {b:"A1",n:"Traction lestée",s:4,r:"6-8",u:"kg lest",w6:["élastique assisté","élastique assisté","poids du corps","poids du corps","poids du corps","poids du corps"],res:[4,3,3,2,2,2],c:"Repos 2-3 min.",alt:["Tirage vertical"]},
+   {b:"A2",n:"Rowing banc incliné poitrine appuyée",s:4,r:"8-10",u:"kg",w6:["65 kg","75 kg","85 kg","90 kg","95 kg","100 kg"],res:[4,3,3,2,2,2],c:"Poitrine appuyée : épargne les lombaires."},
+   {b:"B1",n:"Tirage horizontal poulie",s:3,r:"10-12",u:"kg",w6:["70 kg","80 kg","90 kg","95 kg","100 kg","105 kg"],res:[4,3,3,2,2,2],c:""},
+   {b:"B2",n:"Face pull",s:3,r:"15-20",u:"kg",w6:["45 kg","50 kg","60 kg","65 kg","70 kg","70 kg"],res:[4,3,2,1,1,1],c:"Santé d'épaule — ne cherche pas la charge."},
+   {b:"C1",n:"Curl barre EZ",s:3,r:"8-10",u:"kg",w6:["65 kg","75 kg","85 kg","90 kg","95 kg","100 kg"],res:[4,3,3,2,2,2],c:""},
+   {b:"C2",n:"Barre au front",s:3,r:"10-12",u:"kg",w6:["30 kg","35 kg","37.5 kg","42.5 kg","42.5 kg","45 kg"],res:[4,3,3,2,2,2],c:"Référence estimée (45 kg) : tes logs d'août étaient en dents de scie (40/50/30). Recale en S3."}],
+   cardio:{t:"Z2 long",min:45,bpm:"138-145"},
+   note:"Sortie longue de la semaine, en séance séparée si possible."
+  },
  4:{repos:true, nom:"Repos complet", court:"Repos"}
 };
 const DAYNAME=["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
-const BLOCS=[{w:[1,4],n:"Accumulation 1",cls:"",c:"+1 série sur B et C chaque semaine · +2,5 kg dès que le haut de la fourchette est atteint sur toutes les séries"},
- {w:[5,5],n:"Deload",cls:"deload",c:"60 % du volume, charges à 85 %, RIR 4-5. Le vendredi devient un Z2 de 40 min"},
- {w:[6,9],n:"Accumulation 2",cls:"",c:"Reprise au volume de la semaine 4 +1 série, aux charges de la semaine 4"},
- {w:[10,10],n:"Deload",cls:"deload",c:"Identique à la semaine 5"},
- {w:[11,12],n:"Intensification",cls:"intens",c:"Volume de la semaine 9, RIR 0-1 sur les dernières séries, tests de force"}];
+const BLOCS=[{w:[1,2],n:"Reprise — inoculation",cls:"deload",c:"Charges à 65 puis 75 % de ton niveau d'août. Tu gardes 4 puis 3 répétitions en réserve sur chaque série. 3 séances en S1, 4 en S2. Pas de squat en S1, pas de fentes avant S3."},
+ {w:[3,4],n:"Reprise — remontée",cls:"",c:"85 puis 92 % de ton niveau d'août, 3 puis 2 répétitions en réserve. Semaine complète à 5 séances. Fentes marchées réintroduites en S3, 2 séries seulement."},
+ {w:[5,6],n:"Retour au niveau",cls:"",c:"97 puis 100 % de ton niveau d'août. Volume d'août retrouvé. Le fractionné redevient possible en surplus."},
+ {w:[7,10],n:"Accumulation",cls:"",c:"+1 série sur les blocs B et C chaque semaine · +2,5 kg dès que tu atteins le haut de la fourchette de répétitions sur toutes les séries"},
+ {w:[11,11],n:"Deload",cls:"deload",c:"60 % du volume, charges à 85 %, séries très faciles"},
+ {w:[12,14],n:"Intensification",cls:"intens",c:"Volume de la semaine 10, dernières séries menées jusqu'au bout, tests de force"}];
 
 /* ============ STOCKAGE ============ */
 const K="coach12s_v1";
@@ -300,14 +317,24 @@ function vSeance(w,b){
     let nsets=e.s; if(b.cls==="deload")nsets=Math.max(2,Math.round(e.s*.6));
     h+=`<div class="card"><div class="ex-head"><div class="ex-name"><span class="blk">${e.b}</span>${nm}</div>`;
     if(e.alt)h+=`<button class="swap" data-swap="${dow}|${i}">⇄</button>`;
-    h+=`</div><div class="ex-meta">${nsets} × ${e.r}${e.u!=="—"?" · "+e.u:""}</div>`;
-    if(e.c!=="—")h+=`<div class="ex-cue">${e.c}</div>`;
-    h+=`<table class="sets"><tr><th></th><th>Charge</th><th>Reps</th><th>RIR</th></tr>`;
+    h+=`</div><div class="ex-meta">${nsets} séries × ${e.r} répétitions</div>`;
+    const wk=Math.min(Math.max(w,1),6), chg=(e.w6&&e.w6[wk-1])||"à calibrer", rs=(e.res&&e.res[wk-1]);
+    if(chg!=="—"){
+      const cls=chg==="NE PAS FAIRE"?"skip":(/^[\d.,]/.test(chg)?"":"todo");
+      let eff="";
+      if(chg==="NE PAS FAIRE")eff="Cet exercice n'est pas au programme cette semaine — passe au suivant.";
+      else if(chg==="à calibrer")eff="Première fois : prends une charge que tu pourrais soulever 15 fois, et arrête-toi à "+String(e.r).split("-")[0]+". L'app retiendra ta charge pour la prochaine fois.";
+      else if(rs===0)eff="";
+      else if(rs>=4)eff="Arrête chaque série en te disant que tu aurais pu en faire <b>4 de plus</b>. Tu dois finir facilement.";
+      else eff="Arrête chaque série quand tu pourrais encore en faire <b>"+rs+" de plus</b>.";
+      h+=`<div class="chg"><span class="chg-lab">Charge · semaine ${wk}</span><span class="chg-val ${cls}">${chg}</span>${eff?`<span class="chg-eff">${eff}</span>`:""}</div>`;
+    }
+    if(e.c!=="—"&&e.c!=="")h+=`<div class="ex-cue">${e.c}</div>`;
+    h+=`<table class="sets"><tr><th></th><th>Charge</th><th>Reps</th></tr>`;
     for(let s=0;s<nsets;s++){const v=cur[s]||{};
       h+=`<tr><td class="n">${s+1}</td>
       <td><input class="f${v.w?" done":""}" inputmode="decimal" placeholder="—" data-k="${key}" data-s="${s}" data-f="w" value="${v.w??""}"></td>
-      <td><input class="f${v.r?" done":""}" inputmode="numeric" placeholder="—" data-k="${key}" data-s="${s}" data-f="r" value="${v.r??""}"></td>
-      <td><input class="f" inputmode="numeric" placeholder="—" data-k="${key}" data-s="${s}" data-f="rir" value="${v.rir??""}"></td></tr>`;}
+      <td><input class="f${v.r?" done":""}" inputmode="numeric" placeholder="—" data-k="${key}" data-s="${s}" data-f="r" value="${v.r??""}"></td></tr>`;}
     h+=`</table>`;
     if(prev){const st=prev.sets.filter(x=>x&&x.w).map(x=>x.w+"×"+(x.r||"?")).join("  ");
       const top=Math.max(...prev.sets.filter(x=>x&&x.r).map(x=>+x.r||0));
@@ -446,7 +473,8 @@ function vHisto(){
 function vRapport(){
   document.getElementById("hTitle").textContent="Rapport hebdomadaire";
   document.getElementById("hSub").textContent="À copier-coller dans la conversation";
-  const end=DATE,start=addDays(end,-6);
+  const _d=new Date(DATE+"T00:00"),_off=(_d.getDay()+6)%7;
+  const start=addDays(DATE,-_off),end=addDays(start,6);
   const txt=buildReport(start,end);
   return `<div class="card tight"><div style="font-size:12.5px;color:var(--dim)">
    Période : <b style="color:var(--ink)">${fr(start)} → ${fr(end)}</b> · semaine ${weekOf(end)}</div></div>
@@ -476,7 +504,7 @@ function buildReport(start,end){
     L.push(fr(d)+" · "+P.nom);
     P.ex.forEach((e,i)=>{const k=exKey(dow,i),s=(Lg.ex||{})[k];
       if(!s||!s.some(x=>x&&x.w))return;
-      const str=s.filter(x=>x&&x.w).map(x=>x.w+"×"+(x.r||"?")+(x.rir!==""&&x.rir!=null?"@"+x.rir:"")).join(" ");
+      const str=s.filter(x=>x&&x.w).map(x=>x.w+"×"+(x.r||"?")).join(" ");
       s.forEach(x=>{if(x&&x.w&&x.r){totTon+=(+x.w)*(+x.r);totSer++;}});
       L.push("   "+exName(dow,i)+" : "+str);});
     if(Lg.cardio&&Lg.cardio.min)L.push("   Cardio : "+Lg.cardio.min+" min"+(Lg.cardio.bpm?" @ "+Lg.cardio.bpm+" bpm":""));
