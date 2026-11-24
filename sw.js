@@ -1,5 +1,5 @@
 /* Service worker — cache-first, fonctionnement hors ligne complet */
-const CACHE = "coach12s-v7";
+const CACHE = "coach12s-v10";
 const FILES = ["./","./index.html","./manifest.webmanifest",
   "./icon-180.png","./icon-192.png","./icon-512.png","./icon-512-maskable.png"];
 

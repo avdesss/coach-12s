@@ -136,6 +136,40 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:15px 0}
 .chg-val.skip{font-size:14px;color:var(--rust);font-weight:800}
 .chg-eff{font-size:11.5px;color:var(--dim);width:100%;margin-top:1px}
 .ver{font-size:10px;color:var(--dim);opacity:.6;margin-top:2px;letter-spacing:.3px}
+
+.wknav{display:flex;align-items:center;gap:7px;padding:1px 0 7px}
+.wknav .wklab{flex:1;font-size:12px;color:var(--dim);font-weight:650;text-align:center}
+.wknav .arw{background:var(--card);border:1px solid var(--line);color:var(--dim);border-radius:8px;
+  padding:4px 10px;font-size:13px;font-family:inherit;font-weight:700}
+.wknav .arw.today{font-size:11px;padding:4px 9px}
+.dsel button{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:46px;padding:6px 5px}
+.dsel button .dj{font-size:9.5px;text-transform:uppercase;letter-spacing:.4px;opacity:.8}
+.dsel button .dn{font-size:15px;font-weight:800;line-height:1.05}
+.dsel button .dx{font-size:8.5px;opacity:.75;max-width:52px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dsel button.now{border-color:var(--blue)}
+.dsel button.ok{border-left:3px solid var(--green,#4E7A4E)}
+
+.ex-name .hint{color:var(--dim);opacity:.45;font-weight:400;font-size:13px}
+.chg-pl{width:100%;font-size:10.5px;color:var(--dim);margin-top:2px;letter-spacing:.1px}
+.chg-pl i{opacity:.7}
+.prbadge{margin-top:6px;font-size:11px;font-weight:700;color:#8A6A1F;background:#FDF4DC;
+  border:1px solid #E8D6A0;border-radius:7px;padding:4px 8px;display:inline-block}
+.vgrow{display:flex;align-items:center;gap:8px;margin:5px 0}
+.vglab{flex:0 0 72px;font-size:11px;color:var(--dim);font-weight:650}
+.vgbar{position:relative;flex:1;height:13px;background:var(--card2);border-radius:4px;overflow:hidden}
+.vgp{position:absolute;left:0;top:0;height:100%;background:var(--blue);opacity:.22}
+.vgf{position:absolute;left:0;top:0;height:100%;background:var(--blue)}
+.vgf.low{background:var(--rust)}
+.vgt{position:absolute;top:-1px;width:2px;height:15px;background:var(--dim);opacity:.75}
+.vgn{flex:0 0 46px;text-align:right;font-size:11.5px;font-weight:750;color:var(--ink)}
+.vgn .vgd{font-weight:500;color:var(--dim)}
+#rtbar{position:fixed;left:10px;right:10px;bottom:64px;z-index:60;display:flex;align-items:center;gap:7px;
+  background:var(--card);border:1px solid var(--blue);border-radius:11px;padding:8px 11px;overflow:hidden;
+  box-shadow:0 5px 18px rgba(0,0,0,.28)}
+#rtbar .rtfill{position:absolute;left:0;top:0;bottom:0;background:var(--blue);opacity:.14}
+#rtbar .rtt{position:relative;font-size:19px;font-weight:800;color:var(--blue);min-width:56px;letter-spacing:-.5px}
+#rtbar button{position:relative;background:var(--card2);border:1px solid var(--line);color:var(--dim);
+  border-radius:8px;padding:5px 9px;font-size:11px;font-family:inherit;font-weight:650}
 </style>
 </head>
 <body>
@@ -145,7 +179,7 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:15px 0}
     <div>
       <div class="title" id="hTitle">Coach 12 semaines</div>
       <div class="sub" id="hSub">—</div>
-      <div class="ver">v6 · 24/11/2026</div>
+      <div class="ver">v9 · 24/11/2026</div>
     </div>
     <div class="badge" id="hBadge">S1</div>
   </div>
@@ -169,58 +203,58 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:15px 0}
 /* ============ PROGRAMME ============ */
 const PROG = {
  1:{nom:"Poussée lourde", court:"Poussée", ex:[
-   {b:"A1",n:"Développé couché barre",s:4,r:"5-7",u:"kg",w6:["75 kg", "80 kg", "90 kg", "95 kg", "95 kg", "95 kg"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 90×8 95×7 95×7 95×10. Repos 3 min entre les séries."},
-   {b:"A2",n:"Développé incliné haltères",s:3,r:"8-10",u:"kg/halt",w6:["40 kg", "42.5 kg", "47.5 kg", "50 kg", "50 kg", "50 kg"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 50×8 50×8 50×10. Pas de charge de référence — calibre en S1 et l'app retiendra."},
-   {b:"B1",n:"Développé militaire debout",s:4,r:"6-8",u:"kg",w6:["60 kg", "70 kg", "75 kg", "80 kg", "80 kg", "80 kg"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 80×8 ×4. Repos 2-3 min. Pas de charge de référence — calibre en S1."},
-   {b:"B2",n:"Élévations latérales",s:4,r:"12-15",u:"kg/halt",w6:["10 kg", "12.5 kg", "12.5 kg", "12.5 kg", "12.5 kg", "12.5 kg"],res:[2, 1, 1, 1, 1, 1],c:"Référence août : 12.5×15 12.5×12 ×3. Pas de charge de référence — calibre en S1."},
-   {b:"C1",n:"Dips",s:3,r:"10-12",u:"kg lest",w6:["17.5 kg", "20 kg", "22.5 kg", "25 kg", "25 kg", "25 kg"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 25×8 25×10 25×8 (lest). Utilise la machine d'assistance en S1-S2 si besoin.",alt:["Écarté à la poulie"]},
-   {b:"C2",n:"Extension triceps overhead",s:3,r:"10-12",u:"kg",w6:["30 kg", "30 kg", "32.5 kg", "32.5 kg", "32.5 kg", "32.5 kg"],res:[2, 1, 1, 1, 1, 1],c:"Référence août : 32.5×8 32.5×6 32.5×8. Référence estimée (42 kg), pas loguée — recale si c'est trop léger."},
-   {b:"D",n:"Crunch poulie",s:3,r:"12",u:"kg",w6:["60 kg", "60 kg", "65 kg", "65 kg", "65 kg", "65 kg"],res:[2, 1, 1, 1, 1, 1],c:"Référence août : 62.5×15 62.5×15 67.5×12. + gainage latéral 2×30 s."}],
+   {b:"A1",n:"Développé couché barre",s:4,r:"5-7",u:"lb",w6:["75 lb", "80 lb", "90 lb", "95 lb", "95 lb", "95 lb"],g:{"Pectoraux": 1},rest:180,res:[3, 2, 2, 2, 2, 2],c:"Référence août : 90×8 95×7 95×7 95×10. Repos 3 min entre les séries."},
+   {b:"A2",n:"Développé incliné haltères",s:3,r:"8-10",u:"lb",w6:["40 lb", "45 lb", "45 lb", "50 lb", "50 lb", "50 lb"],g:{"Pectoraux": 1},rest:180,res:[3, 2, 2, 2, 2, 2],c:"Référence août : 50×8 50×8 50×10. Pas de charge de référence — calibre en S1 et l'app retiendra."},
+   {b:"B1",n:"Développé militaire debout",s:4,r:"6-8",u:"lb",w6:["60 lb", "70 lb", "75 lb", "80 lb", "80 lb", "80 lb"],g:{"Épaules": 1},rest:180,res:[3, 2, 2, 2, 2, 2],c:"Référence août : 80×8 ×4. Repos 2-3 min. Pas de charge de référence — calibre en S1."},
+   {b:"B2",n:"Élévations latérales",s:4,r:"12-15",u:"lb",w6:["10 lb", "10 lb", "10 lb", "10 lb", "10 lb", "10 lb"],g:{"Épaules": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:"Référence août : 12.5×15 12.5×12 ×3. Pas de charge de référence — calibre en S1."},
+   {b:"C1",n:"Dips",s:3,r:"10-12",u:"lb",w6:["20 lb", "20 lb", "20 lb", "25 lb", "25 lb", "25 lb"],g:{"Pectoraux": 0.5, "Triceps": 0.5},rest:120,res:[3, 2, 2, 2, 2, 2],c:"Référence août : 25×8 25×10 25×8 (lest). Utilise la machine d'assistance en S1-S2 si besoin.",alt:["Écarté à la poulie"]},
+   {b:"C2",n:"Extension triceps overhead",s:3,r:"10-12",u:"lb",w6:["30 lb", "30 lb", "32.5 lb", "32.5 lb", "32.5 lb", "32.5 lb"],g:{"Triceps": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:"Référence août : 32.5×8 32.5×6 32.5×8. , pas loguée — recale si c'est trop léger."},
+   {b:"D",n:"Crunch poulie",s:3,r:"12",u:"lb",w6:["60 lb", "60 lb", "65 lb", "65 lb", "65 lb", "65 lb"],g:{"Abdos": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:"Référence août : 62.5×15 62.5×15 67.5×12. + gainage latéral 2×30 s."}],
    cardio:{t:"Z2 tapis",min:25,bpm:"138-145"}
   },
  2:{nom:"Jambes barre", court:"Jambes A", ex:[
-   {b:"A",n:"Squat barre",s:4,r:"5-8",u:"kg",w6:["NE PAS FAIRE", "120 kg", "130 kg", "135 kg", "140 kg", "140 kg"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 130×8 140×8 140×8 140×8. Repos 3 min. Aucune série au maximum avant la semaine 4.",alt:["Presse à cuisses"]},
-   {b:"B",n:"Extension lombaire 45°",s:3,r:"12-15",u:"—",w6:["poids du corps", "poids du corps", "poids du corps", "poids du corps", "poids du corps", "poids du corps"],res:[3, 2, 2, 2, 2, 2],c:"Aucun disque, jamais. C'est de la reconstruction, pas une charge."},
-   {b:"C",n:"Fentes marchées haltères",s:3,r:"10-12/jbe",u:"kg/halt",w6:["40 kg", "50 kg", "55 kg", "60 kg", "60 kg", "60 kg"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 60×12 ×3. 2 séries seulement en S3. C'est le plus gros producteur de courbatures du plan."},
-   {b:"D",n:"Leg curl allongé",s:4,r:"10-12",u:"kg",w6:["50 kg", "60 kg", "70 kg", "70 kg", "75 kg", "75 kg"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 80×8 70×12 70×12. Référence estimée (65 kg), pas loguée. Hanche neutre."},
-   {b:"E",n:"Mollets debout",s:6,r:"10-15",u:"kg",w6:["40 kg", "50 kg", "55 kg", "60 kg", "60 kg", "60 kg"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 60×15 ×4. 3 séries seulement en S1 et S2 — gros producteur de courbatures."}],
+   {b:"A",n:"Squat barre",s:4,r:"5-8",u:"lb",w6:["NE PAS FAIRE", "120 lb", "130 lb", "135 lb", "140 lb", "140 lb"],g:{"Quadriceps": 1},rest:180,res:[3, 2, 2, 2, 2, 2],c:"Référence août : 130×8 140×8 140×8 140×8. Repos 3 min. Aucune série au maximum avant la semaine 4.",alt:["Presse à cuisses"]},
+   {b:"B",n:"Extension lombaire 45°",s:3,r:"12-15",u:"—",w6:["poids du corps", "poids du corps", "poids du corps", "poids du corps", "poids du corps", "poids du corps"],g:{"Lombaires": 1},rest:180,res:[3, 2, 2, 2, 2, 2],c:"Aucun disque, jamais. C'est de la reconstruction, pas une charge."},
+   {b:"C",n:"Fentes marchées haltères",s:3,r:"10-12/jbe",u:"lb",w6:["40 lb", "50 lb", "55 lb", "60 lb", "60 lb", "60 lb"],g:{"Quadriceps": 0.5, "Fessiers": 0.5},rest:120,res:[3, 2, 2, 2, 2, 2],c:"Référence août : 60×12 ×3. 2 séries seulement en S3. C'est le plus gros producteur de courbatures du plan."},
+   {b:"D",n:"Leg curl allongé",s:4,r:"10-12",u:"lb",w6:["50 lb", "60 lb", "70 lb", "70 lb", "75 lb", "75 lb"],g:{"Ischios": 1},rest:120,res:[3, 2, 2, 2, 2, 2],c:"Référence août : 80×8 70×12 70×12. , pas loguée. Hanche neutre."},
+   {b:"E",n:"Mollets debout",s:6,r:"10-15",u:"lb",w6:["40 lb", "50 lb", "55 lb", "60 lb", "60 lb", "60 lb"],g:{"Mollets": 1},rest:120,res:[3, 2, 2, 2, 2, 2],c:"Référence août : 60×15 ×4. 3 séries seulement en S1 et S2 — gros producteur de courbatures."}],
    cardio:null,
    warm:"5-8 min tapis incliné très facile"
   },
  3:{nom:"Séance courte", court:"Courte", ex:[
-   {b:"A1",n:"Tirage vertical prise neutre",s:3,r:"10-12",u:"kg",w6:["120 kg", "130 kg", "135 kg", "135 kg", "135 kg", "135 kg"],res:[2, 1, 1, 1, 1, 1],c:"Référence août : 120×12 ×3 · 135×10 en S4. Séance légère : tu dois en sortir en te sentant mieux qu'en entrant."},
-   {b:"A2",n:"Écarté poulie ou pec-deck",s:3,r:"12-15",u:"kg",w6:["120 kg", "130 kg", "135 kg", "135 kg", "135 kg", "135 kg"],res:[2, 1, 1, 1, 1, 1],c:"Référence août : 135×12 ×3."},
-   {b:"B1",n:"Rowing poulie basse",s:3,r:"12-15",u:"kg",w6:["85 kg", "90 kg", "95 kg", "95 kg", "95 kg", "95 kg"],res:[2, 1, 1, 1, 1, 1],c:"Référence août : 90×15 ×3 · 95×15 en S4."},
-   {b:"B2",n:"Élévations latérales poulie",s:3,r:"15-20",u:"kg",w6:["10 kg", "12.5 kg", "12.5 kg", "12.5 kg", "12.5 kg", "12.5 kg"],res:[2, 1, 1, 1, 1, 1],c:"Référence août : 14×12 12.5×15 ×2."},
-   {b:"C1",n:"Curl marteau",s:2,r:"12-15",u:"kg/halt",w6:["22.5 kg", "25 kg", "25 kg", "25 kg", "25 kg", "25 kg"],res:[2, 1, 1, 1, 1, 1],c:"Référence août : 20×15 ×2 · 25×15 en S4."},
-   {b:"C2",n:"Extension triceps poulie",s:2,r:"12-15",u:"kg",w6:["80 kg", "85 kg", "90 kg", "90 kg", "90 kg", "90 kg"],res:[2, 1, 1, 1, 1, 1],c:"Référence août : 90×12 ×2."},
-   {b:"D",n:"Planche 3×45 s + Pallof 3×12",s:3,r:"45 s",u:"—",w6:["—", "—", "—", "—", "—", "—"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 105×12 105×10."}],
+   {b:"A1",n:"Tirage vertical prise neutre",s:3,r:"10-12",u:"lb",w6:["120 lb", "130 lb", "135 lb", "135 lb", "135 lb", "135 lb"],g:{"Dos": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:"Référence août : 120×12 ×3 · 135×10 en S4. Séance légère : tu dois en sortir en te sentant mieux qu'en entrant."},
+   {b:"A2",n:"Écarté poulie ou pec-deck",s:3,r:"12-15",u:"lb",w6:["120 lb", "130 lb", "135 lb", "135 lb", "135 lb", "135 lb"],g:{"Pectoraux": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:"Référence août : 135×12 ×3."},
+   {b:"B1",n:"Rowing poulie basse",s:3,r:"12-15",u:"lb",w6:["85 lb", "90 lb", "95 lb", "95 lb", "95 lb", "95 lb"],g:{"Dos": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:"Référence août : 90×15 ×3 · 95×15 en S4."},
+   {b:"B2",n:"Élévations latérales poulie",s:3,r:"15-20",u:"lb",w6:["10 lb", "12.5 lb", "12.5 lb", "12.5 lb", "12.5 lb", "12.5 lb"],g:{"Épaules": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:"Référence août : 14×12 12.5×15 ×2."},
+   {b:"C1",n:"Curl marteau",s:4,r:"12-15",u:"lb",w6:["20 lb", "25 lb", "25 lb", "25 lb", "25 lb", "25 lb"],g:{"Biceps": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:"Référence août : 20×15 ×2 · 25×15 en S4."},
+   {b:"C2",n:"Extension triceps poulie",s:2,r:"12-15",u:"lb",w6:["80 lb", "85 lb", "90 lb", "90 lb", "90 lb", "90 lb"],g:{"Triceps": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:"Référence août : 90×12 ×2."},
+   {b:"D",n:"Planche 3×45 s + Pallof 3×12",s:3,r:"45 s",u:"—",w6:["—", "—", "—", "—", "—", "—"],g:{"Abdos": 1},rest:180,g:{"Abdos": 1},rest:180,res:[3, 2, 2, 2, 2, 2],c:"Référence août : 105×12 105×10."}],
    cardio:null,
    note:"Séance volontairement facile. Tu t'arrêtes loin du maximum sur chaque série."
   },
  5:{nom:"Course seule", court:"Course", ex:[
-   {b:"A",n:"Course Z2",s:1,r:"20-35 min",u:"min",w6:["20 min", "25 min", "25 min", "30 min", "30 min", "35 min"],res:[3, 2, 2, 2, 2, 2],c:"Allure conversation : tu dois pouvoir parler en phrases complètes. 138-145 bpm."}],
+   {b:"A",n:"Course Z2",s:1,r:"20-35 min",u:"min",w6:["20 min", "25 min", "25 min", "30 min", "30 min", "35 min"],g:{},rest:180,res:[3, 2, 2, 2, 2, 2],c:"Allure conversation : tu dois pouvoir parler en phrases complètes. 138-145 bpm."}],
    cardio:{t:"Z2 extérieur",min:25,bpm:"138-145"},
    note:"Le HIIT est retiré du plan. Tu peux l'ajouter en surplus à partir de la semaine 5 — jamais avant : après deux mois d'arrêt c'est le tendon et le tibia qui limitent, pas le souffle."
   },
  6:{nom:"Jambes machines", court:"Jambes B", ex:[
-   {b:"A",n:"Presse à cuisses",s:4,r:"10-12",u:"kg",w6:["400 kg", "430 kg", "450 kg", "450 kg", "450 kg", "450 kg"],res:[2, 1, 1, 1, 1, 1],c:"Référence août : 450×12 ×4. Amplitude contrôlée, pas de descente profonde. Calibre en S1."},
-   {b:"B",n:"Hip thrust barre",s:4,r:"10-12",u:"kg",w6:["à calibrer", "à calibrer", "à calibrer", "à calibrer", "à calibrer", "à calibrer"],res:[3, 2, 2, 2, 2, 2],c:"Remplace les fentes bulgares jusqu'en S4 : pas d'étirement sous charge.",alt:["Fentes bulgares","Step-up banc haut"]},
-   {b:"C",n:"Leg curl assis",s:5,r:"12-15",u:"kg",w6:["50 kg", "55 kg", "65 kg", "65 kg", "70 kg", "70 kg"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 70×12 ×2 60×12 ×3. 3 séries seulement en S1. Référence estimée (65 kg), pas loguée.",alt:["Leg curl allongé"]},
-   {b:"D",n:"Leg extension",s:2,r:"12-15",u:"kg",w6:["110 kg", "115 kg", "120 kg", "120 kg", "120 kg", "120 kg"],res:[2, 1, 1, 1, 1, 1],c:"Référence août : 120×14 120×12. Référence estimée (120 kg), pas loguée. Le moins traumatisant des mouvements de quadriceps."},
-   {b:"E",n:"Mollets assis",s:8,r:"12-15",u:"kg",w6:["35 kg", "40 kg", "45 kg", "47.5 kg", "50 kg", "50 kg"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 50×10 ×5 (séance du 16/8). 3 séries en S1, 5 en S2, puis 8. Référence estimée (42 kg)."},
-   {b:"F",n:"Hip thrust machine",s:3,r:"12-15",u:"kg",w6:["à calibrer", "à calibrer", "à calibrer", "à calibrer", "à calibrer", "à calibrer"],res:[3, 2, 2, 2, 2, 2],c:"À partir de S2.",alt:["Kickback poulie"]},
+   {b:"A",n:"Presse à cuisses",s:4,r:"10-12",u:"lb",w6:["400 lb", "430 lb", "450 lb", "450 lb", "450 lb", "450 lb"],g:{"Quadriceps": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:"Référence août : 450×12 ×4. Amplitude contrôlée, pas de descente profonde. Calibre en S1."},
+   {b:"B",n:"Hip thrust barre",s:4,r:"10-12",u:"lb",w6:["à calibrer", "à calibrer", "à calibrer", "à calibrer", "à calibrer", "à calibrer"],g:{"Fessiers": 1},rest:180,res:[3, 2, 2, 2, 2, 2],c:"Remplace les fentes bulgares jusqu'en S4 : pas d'étirement sous charge.",alt:["Fentes bulgares","Step-up banc haut"]},
+   {b:"C",n:"Leg curl assis",s:5,r:"12-15",u:"lb",w6:["50 lb", "55 lb", "65 lb", "65 lb", "70 lb", "70 lb"],g:{"Ischios": 1},rest:120,res:[3, 2, 2, 2, 2, 2],c:"Référence août : 70×12 ×2 60×12 ×3. 3 séries seulement en S1. , pas loguée.",alt:["Leg curl allongé"]},
+   {b:"D",n:"Leg extension",s:2,r:"12-15",u:"lb",w6:["110 lb", "115 lb", "120 lb", "120 lb", "120 lb", "120 lb"],g:{"Quadriceps": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:"Référence août : 120×14 120×12. , pas loguée. Le moins traumatisant des mouvements de quadriceps."},
+   {b:"E",n:"Mollets assis",s:8,r:"12-15",u:"lb",w6:["35 lb", "40 lb", "45 lb", "50 lb", "50 lb", "50 lb"],g:{"Mollets": 1},rest:120,res:[3, 2, 2, 2, 2, 2],c:"Référence août : 50×10 ×5 (séance du 16/8). 3 séries en S1, 5 en S2, puis 8."},
+   {b:"F",n:"Hip thrust machine",s:3,r:"12-15",u:"lb",w6:["à calibrer", "à calibrer", "à calibrer", "à calibrer", "à calibrer", "à calibrer"],g:{"Fessiers": 1},rest:180,res:[3, 2, 2, 2, 2, 2],c:"À partir de S2.",alt:["Kickback poulie"]},
    {b:"G",n:"Relevés de jambes 3×12 + roue 2×10",s:3,r:"12",u:"—",w6:["—", "—", "—", "—", "—", "—"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 90×10 100×10 100×10."}],
    cardio:null,
    note:"SEMAINE 1 : c'est ta seule séance de jambes, et elle est volontairement légère. Elle protège les semaines suivantes — tu ne gagnes rien à la rendre dure."
   },
  0:{nom:"Tirage lourd + bras", court:"Tirage", ex:[
-   {b:"A1",n:"Traction lestée",s:4,r:"6-8",u:"kg lest",w6:["élastique assisté", "poids du corps", "poids du corps", "poids du corps", "+2.5 kg", "+5 kg"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 0×8 ×4 (poids de corps). Repos 2-3 min.",alt:["Tirage vertical"]},
-   {b:"A2",n:"Rowing banc incliné poitrine appuyée",s:4,r:"8-10",u:"kg",w6:["80 kg", "85 kg", "95 kg", "100 kg", "100 kg", "100 kg"],res:[3, 2, 2, 2, 2, 2],c:"Référence août : 90×10 100×8 100×8 90×8. Poitrine appuyée : épargne les lombaires."},
-   {b:"B1",n:"Tirage horizontal poulie",s:3,r:"10-12",u:"kg",w6:["95 kg", "100 kg", "105 kg", "105 kg", "105 kg", "105 kg"],res:[2, 1, 1, 1, 1, 1],c:""},
-   {b:"B2",n:"Face pull",s:3,r:"15-20",u:"kg",w6:["65 kg", "65 kg", "70 kg", "70 kg", "70 kg", "70 kg"],res:[2, 1, 1, 1, 1, 1],c:"Référence août : 60×15 70×15 70×20. Santé d'épaule — ne cherche pas la charge."},
-   {b:"C1",n:"Curl barre EZ",s:3,r:"8-10",u:"kg",w6:["90 kg", "95 kg", "100 kg", "100 kg", "100 kg", "100 kg"],res:[2, 1, 1, 1, 1, 1],c:""},
-   {b:"C2",n:"Barre au front",s:3,r:"10-12",u:"kg",w6:["35 kg", "37.5 kg", "40 kg", "40 kg", "40 kg", "40 kg"],res:[2, 1, 1, 1, 1, 1],c:"Référence août : 40×12 40×10 40×10. Référence estimée (45 kg) : tes logs d'août étaient en dents de scie (40/50/30). Recale en S3."}],
+   {b:"A1",n:"Traction lestée",s:4,r:"6-8",u:"lb",w6:["élastique assisté", "poids du corps", "poids du corps", "poids du corps", "+5 lb", "+10 lb"],g:{"Dos": 1},rest:180,res:[3, 2, 2, 2, 2, 2],c:"Référence août : 0×8 ×4 (poids de corps). Repos 2-3 min.",alt:["Tirage vertical"]},
+   {b:"A2",n:"Rowing banc incliné poitrine appuyée",s:4,r:"8-10",u:"lb",w6:["80 lb", "85 lb", "95 lb", "100 lb", "100 lb", "100 lb"],g:{"Dos": 1},rest:180,res:[3, 2, 2, 2, 2, 2],c:"Référence août : 90×10 100×8 100×8 90×8. Poitrine appuyée : épargne les lombaires."},
+   {b:"B1",n:"Tirage horizontal poulie",s:3,r:"10-12",u:"lb",w6:["95 lb", "100 lb", "105 lb", "105 lb", "105 lb", "105 lb"],g:{"Dos": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:""},
+   {b:"B2",n:"Face pull",s:3,r:"15-20",u:"lb",w6:["65 lb", "65 lb", "70 lb", "70 lb", "70 lb", "70 lb"],g:{"Épaules": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:"Référence août : 60×15 70×15 70×20. Santé d'épaule — ne cherche pas la charge."},
+   {b:"C1",n:"Curl barre EZ",s:4,r:"8-10",u:"lb",w6:["90 lb", "95 lb", "100 lb", "100 lb", "100 lb", "100 lb"],g:{"Biceps": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:""},
+   {b:"C2",n:"Barre au front",s:3,r:"10-12",u:"lb",w6:["35 lb", "40 lb", "40 lb", "40 lb", "40 lb", "40 lb"],g:{"Triceps": 1},rest:90,res:[2, 1, 1, 1, 1, 1],c:"Référence août : 40×12 40×10 40×10. tes logs d'août étaient en dents de scie (40/50/30). Recale en S3."}],
    cardio:{t:"Z2 long",min:45,bpm:"138-145"},
    note:"Sortie longue de la semaine, en séance séparée si possible."
   },
@@ -285,14 +319,150 @@ function render(){
   bind();
 }
 
+
+/* ===== Préférences d'unité et de barre ===== */
+function prefs(){ if(!DB.prefs) DB.prefs={unit:"lb",bar:45,plates:[45,35,25,10,5,2.5]}; return DB.prefs; }
+
+/* ===== 2. Calculateur de disques ===== */
+function plateBreak(total){
+  const p=prefs(), bar=+p.bar||45;
+  if(!isFinite(total)||total<=bar) return null;
+  let side=(total-bar)/2, out=[];
+  for(const d of p.plates.slice().sort((a,b)=>b-a)){
+    let k=Math.floor(side/d+1e-9);
+    if(k>0){ out.push(k+"×"+d); side=+(side-k*d).toFixed(2); }
+  }
+  return {list:out, reste:side};
+}
+
+/* ===== 3. Détection de records ===== */
+function e1rm(w,r){ return (+w)*(1+(+r)/30); }
+function prFor(key, beforeDate){
+  let bw=0, be=0;
+  Object.keys(DB.logs).forEach(d=>{
+    if(beforeDate && d>=beforeDate) return;
+    const sets=((DB.logs[d].ex)||{})[key]||[];
+    sets.forEach(s=>{ if(s&&s.w&&s.r){ bw=Math.max(bw,+s.w); be=Math.max(be,e1rm(s.w,s.r)); } });
+  });
+  return {w:bw, e:be};
+}
+function prBadges(key){
+  const hist=prFor(key, DATE), cur=((DB.logs[DATE]||{}).ex||{})[key]||[];
+  let nw=0, ne=0;
+  cur.forEach(s=>{ if(s&&s.w&&s.r){ nw=Math.max(nw,+s.w); ne=Math.max(ne,e1rm(s.w,s.r)); } });
+  const b=[];
+  if(hist.w && nw>hist.w) b.push("record de charge");
+  if(hist.e && ne>hist.e+0.01) b.push("record de force estimée");
+  return b;
+}
+
+/* ===== 4. Historique d'un exercice ===== */
+function exHistory(key, nom){
+  const rows=[];
+  Object.keys(DB.logs).sort().reverse().forEach(d=>{
+    const sets=((DB.logs[d].ex)||{})[key]||[];
+    const st=sets.filter(s=>s&&s.w).map(s=>s.w+"×"+(s.r||"?")).join("  ");
+    if(st) rows.push({d:d, st:st, e:Math.max(...sets.filter(s=>s&&s.w&&s.r).map(s=>e1rm(s.w,s.r)), 0)});
+  });
+  const u=prefs().unit;
+  let h=`<div class="card"><div class="ex-head"><div class="ex-name">${esc(nom)}</div>
+    <button class="swap" id="hClose">fermer</button></div>`;
+  if(!rows.length) h+=`<div class="ex-cue">Aucune série loguée pour cet exercice.</div>`;
+  else{
+    const best=Math.max(...rows.map(r=>r.e));
+    h+=`<table class="sets"><tr><th>Date</th><th>Séries</th><th>Force est.</th></tr>`;
+    rows.forEach(r=>{ h+=`<tr><td class="n" style="white-space:nowrap">${fr(r.d)}</td>
+      <td style="font-size:12px">${r.st}</td>
+      <td style="font-size:12px;${r.e>=best?"font-weight:800;color:var(--blue)":""}">${r.e?r.e.toFixed(0)+" "+u:"—"}</td></tr>`;});
+    h+=`</table><div class="ex-cue">${rows.length} séance${rows.length>1?"s":""} · meilleure force estimée ${best.toFixed(0)} ${u} (formule d'Epley)</div>`;
+  }
+  return h+`</div>`;
+}
+
+/* ===== 5. Volume hebdomadaire par groupe musculaire ===== */
+function volumeGroupes(start,end){
+  const v={};
+  for(let d=start; d<=end; d=addDays(d,1)){
+    const dow=new Date(d+"T00:00").getDay(), P=PROG[dow]; if(!P||!P.ex) continue;
+    const L=DB.logs[d];
+    P.ex.forEach((e,i)=>{
+      if(!e.g) return;
+      const key=exKey(dow,i);
+      const done=L?(((L.ex)||{})[key]||[]).filter(s=>s&&s.w).length:0;
+      Object.keys(e.g).forEach(g=>{ v[g]=v[g]||{prevu:0,fait:0};
+        v[g].prevu+=e.s*e.g[g]; v[g].fait+=done*e.g[g]; });
+    });
+  }
+  return v;
+}
+function vVolume(){
+  const o=(new Date(DATE+"T00:00").getDay()+6)%7, lun=addDays(DATE,-o);
+  const v=volumeGroupes(lun, addDays(lun,6));
+  const ks=Object.keys(v).sort((a,b)=>v[b].prevu-v[a].prevu);
+  if(!ks.length) return "";
+  const mx=Math.max(...ks.map(k=>Math.max(v[k].prevu,10)))*1.12;
+  let h=`<div class="lab">Volume par groupe — semaine du ${fr(lun)}</div><div class="card">`;
+  ks.forEach(k=>{
+    const o_=v[k], pf=o_.prevu/mx*100, ff=o_.fait/mx*100, sous=o_.prevu<10;
+    h+=`<div class="vgrow"><div class="vglab">${k}</div>
+      <div class="vgbar"><div class="vgp" style="width:${pf.toFixed(1)}%"></div>
+        <div class="vgf ${sous?"low":""}" style="width:${ff.toFixed(1)}%"></div>
+        <div class="vgt" style="left:${(10/mx*100).toFixed(1)}%"></div></div>
+      <div class="vgn">${o_.fait.toFixed(0)}<span class="vgd">/${o_.prevu.toFixed(0)}</span></div></div>`;
+  });
+  h+=`<div class="ex-cue">Barre pleine = séries loguées · barre claire = prévues · trait = seuil de 10 séries hebdomadaires par groupe</div></div>`;
+  return h;
+}
+
+/* ===== 1. Minuteur de repos ===== */
+let RT={id:null,left:0,total:0};
+function rtBeep(){
+  try{ const C=new (window.AudioContext||window.webkitAudioContext)(), o=C.createOscillator(), g=C.createGain();
+    o.connect(g); g.connect(C.destination); o.frequency.value=880; g.gain.value=.18;
+    o.start(); setTimeout(()=>{o.stop(); C.close();}, 320);
+  }catch(e){}
+  if(navigator.vibrate) navigator.vibrate([200,90,200]);
+}
+function rtRender(){
+  let el=document.getElementById("rtbar");
+  if(!RT.id && RT.left<=0){ if(el) el.remove(); return; }
+  if(!el){ el=document.createElement("div"); el.id="rtbar"; document.body.appendChild(el); }
+  const m=Math.floor(RT.left/60), s=RT.left%60;
+  el.innerHTML=`<div class="rtfill" style="width:${RT.total?(100-RT.left/RT.total*100).toFixed(1):0}%"></div>
+    <span class="rtt">${m}:${String(s).padStart(2,"0")}</span>
+    <button data-rt="-30">−30 s</button><button data-rt="+30">+30 s</button><button data-rt="stop">arrêter</button>`;
+  el.querySelectorAll("[data-rt]").forEach(b=>b.onclick=()=>{
+    const a=b.dataset.rt;
+    if(a==="stop"){ clearInterval(RT.id); RT.id=null; RT.left=0; }
+    else { RT.left=Math.max(5, RT.left+(+a)); RT.total=Math.max(RT.total, RT.left); }
+    rtRender();
+  });
+}
+function rtStart(sec){
+  if(RT.id) clearInterval(RT.id);
+  RT.left=sec; RT.total=sec;
+  RT.id=setInterval(()=>{ RT.left--; if(RT.left<=0){ clearInterval(RT.id); RT.id=null; rtBeep(); } rtRender(); }, 1000);
+  rtRender();
+}
+
 /* ---- Séance ---- */
 function vSeance(w,b){
   const dow=new Date(DATE+"T00:00").getDay(),P=PROG[dow];
   document.getElementById("hTitle").textContent=P.nom;
   document.getElementById("hSub").textContent=fr(DATE)+" · "+b.n;
-  let h='<div class="dsel">';
-  for(let k=-3;k<=1;k++){const d=addDays(today(),k),dw=new Date(d+"T00:00").getDay();
-    h+=`<button data-d="${d}" class="${d===DATE?"on":""} ${PROG[dw].repos?"rest":""}">${k===0?"Auj.":fr(d)}</button>`;}
+  const _o=(new Date(DATE+"T00:00").getDay()+6)%7, _lun=addDays(DATE,-_o);
+  let h='<div class="wknav">'
+    + `<button data-d="${addDays(_lun,-7)}" class="arw">‹</button>`
+    + `<span class="wklab">${fr(_lun)} – ${fr(addDays(_lun,6))}</span>`
+    + `<button data-d="${addDays(_lun,7)}" class="arw">›</button>`
+    + `<button data-d="${today()}" class="arw today">Auj.</button></div>`;
+  h+='<div class="dsel">';
+  for(let k=0;k<7;k++){const d=addDays(_lun,k),dw=new Date(d+"T00:00").getDay();
+    const logged=!!(DB.logs[d]&&Object.keys(DB.logs[d].ex||{}).length);
+    const cls=[d===DATE?"on":"",PROG[dw].repos?"rest":"",d===today()?"now":"",logged?"ok":""].join(" ");
+    h+=`<button data-d="${d}" class="${cls}"><span class="dj">${DAYNAME[dw].slice(0,3)}</span>`
+      +`<span class="dn">${new Date(d+"T00:00").getDate()}</span>`
+      +`<span class="dx">${PROG[dw].court||""}</span></button>`;}
   h+='</div>';
 
   if(P.repos)return h+`<div class="empty"><b style="color:var(--ink);font-size:17px">Repos complet</b><br><br>
@@ -316,7 +486,7 @@ function vSeance(w,b){
     const key=exKey(dow,i),nm=exName(dow,i),cur=(L.ex||{})[key]||[];
     const prev=lastPerf(dow,i,DATE);
     let nsets=e.s; if(b.cls==="deload")nsets=Math.max(2,Math.round(e.s*.6));
-    h+=`<div class="card"><div class="ex-head"><div class="ex-name"><span class="blk">${e.b}</span>${nm}</div>`;
+    h+=`<div class="card"><div class="ex-head"><div class="ex-name" data-h="${dow}|${i}"><span class="blk">${e.b}</span>${nm} <span class="hint">›</span></div>`;
     if(e.alt)h+=`<button class="swap" data-swap="${dow}|${i}">⇄</button>`;
     h+=`</div><div class="ex-meta">${nsets} séries × ${e.r} répétitions</div>`;
     const wk=Math.min(Math.max(w,1),6), chg=(e.w6&&e.w6[wk-1])||"à calibrer", rs=(e.res&&e.res[wk-1]);
@@ -328,7 +498,12 @@ function vSeance(w,b){
       else if(rs===0)eff="";
       else if(rs>=4)eff="Arrête chaque série en te disant que tu aurais pu en faire <b>4 de plus</b>. Tu dois finir facilement.";
       else eff="Arrête chaque série quand tu pourrais encore en faire <b>"+rs+" de plus</b>.";
-      h+=`<div class="chg"><span class="chg-lab">Charge · semaine ${wk}</span><span class="chg-val ${cls}">${chg}</span>${eff?`<span class="chg-eff">${eff}</span>`:""}</div>`;
+      const num=parseFloat(String(chg).replace(",","."));
+      const pb=plateBreak(num), prb=prBadges(key);
+      h+=`<div class="chg"><span class="chg-lab">Charge · semaine ${wk}</span><span class="chg-val ${cls}">${chg}</span>`
+        +(pb&&/^[\d.,]/.test(chg)?`<span class="chg-pl">barre ${prefs().bar} + ${pb.list.join(" + ")} par côté${pb.reste>0.01?` <i>(reste ${pb.reste})</i>`:""}</span>`:"")
+        +(eff?`<span class="chg-eff">${eff}</span>`:"")+`</div>`;
+      if(prb.length)h+=`<div class="prbadge">★ ${prb.join(" · ")}</div>`;
     }
     if(e.c!=="—"&&e.c!=="")h+=`<div class="ex-cue">${e.c}</div>`;
     h+=`<table class="sets"><tr><th></th><th>Charge</th><th>Reps</th></tr>`;
@@ -427,6 +602,7 @@ function spark(pts,unit){
 /* ---- Suivi ---- */
 function vHisto(){
   document.getElementById("hTitle").textContent="Suivi";
+  const _vg=vVolume();
   const ds=Object.keys(DB.logs).sort().reverse();
   document.getElementById("hSub").textContent=ds.length+" séance"+(ds.length>1?"s":"")+" enregistrée"+(ds.length>1?"s":"");
   if(!ds.length)return `<div class="empty">Aucune séance enregistrée.<br><br>Les charges saisies dans l'onglet Séance apparaîtront ici, avec leur progression.</div>`;
@@ -438,7 +614,7 @@ function vHisto(){
       if(s&&s.w&&s.r){byW[w].ton+=(+s.w)*(+s.r);byW[w].ser++;any=true;}}));
     if(any)byW[w].n++;});
   const wk=Object.keys(byW).map(Number).sort((a,b)=>a-b);
-  let h="";
+  let h=_vg+"";
   if(wk.length){h+=`<div class="lab">Tonnage hebdomadaire</div><div class="card">`;
     const mx=Math.max(...wk.map(w=>byW[w].ton))||1;
     wk.slice(-8).forEach(w=>{const t=byW[w].ton,p=(t/mx*100).toFixed(0);
@@ -462,7 +638,7 @@ function vHisto(){
       <div class="v1 ${g>1?"dn":g<-1?"up":"fl2"}" style="font-size:14px">${g>0?"+":""}${g.toFixed(1)} %</div></div>`;});
     h+=`</div><div class="note" style="padding:0 3px">Le 1RM estimé combine charge et répétitions : il monte même quand tu ajoutes des reps à charge constante. C'est le meilleur indicateur de progression réelle.</div>`;}
   h+=`<div class="lab">Séances</div><div class="card">`;
-  ds.slice(0,20).forEach(d=>{const L=DB.logs[d];
+  ds.slice(0,60).forEach(d=>{const L=DB.logs[d];
     let ns=0;Object.values(L.ex||{}).forEach(s=>s.forEach(x=>{if(x&&x.w&&x.r)ns++;}));
     h+=`<div class="hist"><div><div class="v1" style="font-size:14px">${PROG[L.dow].nom}</div>
     <div class="d1">${fr(d)} · S${weekOf(d)} · ${ns} séries${L.cardio&&L.cardio.min?" · cardio "+L.cardio.min+" min":""}</div></div>
@@ -555,7 +731,16 @@ function vRegl(){
   document.getElementById("hTitle").textContent="Réglages";
   document.getElementById("hSub").textContent="Données stockées sur cet iPhone uniquement";
   const n=Object.keys(DB.logs).length,w=Object.keys(DB.weights).length;
-  return `<div class="lab">Début du programme</div><div class="card">
+  return `<div class="lab">Unités et matériel</div><div class="card">
+   <label class="fl">Unité des charges</label>
+   <select class="t" id="pUnit"><option value="lb">livres (lb)</option><option value="kg">kilogrammes (kg)</option></select>
+   <label class="fl" style="margin-top:9px">Poids de la barre (${prefs().unit})</label>
+   <input class="t" id="pBar" inputmode="decimal" value="${prefs().bar}">
+   <label class="fl" style="margin-top:9px">Disques disponibles, séparés par des virgules</label>
+   <input class="t" id="pPl" value="${prefs().plates.join(", ")}">
+   <button class="swap" id="pSave" style="margin-top:10px;padding:6px 13px">Enregistrer</button>
+   <div class="note">Sert au montage affiché sous chaque charge : « barre 45 + 2×25 + 1×10 par côté ».</div></div>
+   <div class="lab">Début du programme</div><div class="card">
    <label class="fl">Date du lundi de la semaine 1</label>
    <input class="t" type="date" data-set="start" value="${DB.start||""}">
    <div class="note">Détermine le numéro de semaine et le bloc de périodisation (accumulation, deload, intensification).</div></div>
@@ -578,7 +763,27 @@ function vRegl(){
 
 /* ============ ÉVÉNEMENTS ============ */
 function bind(){
+  (()=>{const u=document.getElementById("pUnit");if(!u)return;
+    u.value=prefs().unit;
+    document.getElementById("pSave").onclick=()=>{
+      const p=prefs(); p.unit=u.value; p.bar=+document.getElementById("pBar").value||45;
+      p.plates=document.getElementById("pPl").value.split(",").map(x=>parseFloat(x)).filter(x=>x>0);
+      save(); toast("Matériel enregistré"); render();};})();
   document.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{DATE=b.dataset.d;render();});
+  document.querySelectorAll("[data-h]").forEach(b=>b.onclick=()=>{
+    const [dw,ix]=b.dataset.h.split("|");
+    const el=document.getElementById("view");
+    el.innerHTML=exHistory(exKey(+dw,+ix), exName(+dw,+ix))+el.innerHTML;
+    document.getElementById("hClose").onclick=()=>render();
+    window.scrollTo(0,0);
+  });
+  document.querySelectorAll('input[data-f="r"]').forEach(inp=>inp.addEventListener("change",()=>{
+    if(!inp.value) return;
+    const dw=new Date(DATE+"T00:00").getDay(), P=PROG[dw]; if(!P||!P.ex) return;
+    const k=inp.dataset.k, ix=P.ex.findIndex((e,j)=>exKey(dw,j)===k);
+    const sec=(ix>=0&&P.ex[ix].rest)?P.ex[ix].rest:120;
+    rtStart(sec);
+  }));
   document.querySelectorAll("[data-goto]").forEach(b=>b.onclick=()=>{DATE=b.dataset.goto;TAB="seance";render();});
 
   document.querySelectorAll("input.f").forEach(inp=>{
